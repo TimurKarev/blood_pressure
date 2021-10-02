@@ -1,31 +1,36 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-const todoTABLE = 'Todo';
+final dbProvider = Provider<DatabaseProvider>((ref) {
+  var database = DatabaseProvider();
+  ref.onDispose(() => database.close());
+  return database;
+});
 
 class DatabaseProvider {
-  static final DatabaseProvider dbProvider = DatabaseProvider();
 
-  Database _database;
+  final tableName = 'Measurement';
+  late Database database;
 
-  Future<Database> get database async {
-    if (_database != null) return _database;
-    _database = await createDatabase();
-    return _database;
+  DatabaseProvider() {
+    open();
   }
 
-  createDatabase() async {
+  open() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     //"ReactiveTodo.db is our database instance name
-    String path = join(documentsDirectory.path, "ReactiveTodo.db ");
-
-    var database = await openDatabase(path,
+    String path = join(documentsDirectory.path, "Measurement.db");
+    database = await openDatabase(path,
         version: 1, onCreate: initDB, onUpgrade: onUpgrade);
-    return database;
+  }
+
+  close() async {
+    await database.close();
   }
 
   //This is optional, and only used for changing DB schema migrations
@@ -34,13 +39,13 @@ class DatabaseProvider {
   }
 
   void initDB(Database database, int version) async {
-    await database.execute("CREATE TABLE $todoTABLE ("
+    await database.execute("CREATE TABLE $tableName ("
         "id INTEGER PRIMARY KEY, "
-        "description TEXT, "
-    /*SQLITE doesn't have boolean type
-        so we store isDone as integer where 0 is false
-        and 1 is true*/
-        "is_done INTEGER "
+        "sys INTEGER, "
+        "dia INTEGER, "
+        "pulse INTEGER, "
+        "pills TEXT, "
+        "diagnosis TEXT, "
         ")");
   }
 }
