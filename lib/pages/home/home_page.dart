@@ -1,3 +1,4 @@
+import 'package:blood_pressure/pages/home/widgets/empty_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,9 +26,7 @@ class HomePage extends StatelessWidget {
                   width: double.infinity,
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Card(
-                      child: Text("Card"),
-                    ),
+                    child: EmptyCard(),
                   ),
                 ),
               ),

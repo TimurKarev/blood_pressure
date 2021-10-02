@@ -1,7 +1,11 @@
 import 'package:blood_pressure/database/measurement_database.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sqflite/sqflite.dart';
 
-
+final daoProvider = Provider<MeasurementDao>((ref) {
+  final db = ref.read(dbProvider);
+  return MeasurementDao(db);
+});
 
 class MeasurementDao {
 
