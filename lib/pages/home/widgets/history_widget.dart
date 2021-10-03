@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 class HistoryWidget extends StatelessWidget {
 
   final ScrollController controller;
-  List<Measurement> measurements;
+  final List<Measurement> measurements;
 
-  HistoryWidget({
-    this.measurements= const [],
+  const HistoryWidget({
+    required this.measurements,
     required this.controller,
     Key? key,
   }) : super(key: key);
@@ -31,7 +31,7 @@ class HistoryWidget extends StatelessWidget {
         SliverList(
           delegate: SliverChildBuilderDelegate(
                 (context, index) {
-              return InfoCard(measure: historyMeasurements[index]);
+              return InfoCard(historyMeasurements[index]);
             },
             childCount: historyMeasurements.length,
           ),

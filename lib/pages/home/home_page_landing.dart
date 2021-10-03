@@ -14,7 +14,7 @@ class HomePageLanding extends ConsumerWidget {
     return measurements.when(
       data: (data) {
         if (data) {
-          return const HomeFullPage();
+          return const HomeFullPageLanding();
         }
         return const EmptyHomeScreen();
       },

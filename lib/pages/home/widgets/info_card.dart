@@ -3,23 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class InfoCard extends StatelessWidget {
-  final Measurement measure;
+  final Measurement measurements;
 
-  const InfoCard({Key? key, required this.measure}) : super(key: key);
+  const InfoCard(this.measurements, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final DateFormat dateFormatter = DateFormat('dd.MM');
     final DateFormat timeFormatter = DateFormat('hh:mm');
-    final date = dateFormatter.format(measure.time);
-    final time = timeFormatter.format(measure.time);
+    final date = dateFormatter.format(measurements.time);
+    final time = timeFormatter.format(measurements.time);
     return Card(
       color: Colors.grey,
       child: Column(
         children: [
           Text("$date, $time"),
-          Text("${measure.sys} / ${measure.dia}    ${measure.pulse}"),
-          Text("Pills: ${measure.pills}"),
+          Text("${measurements.sys} / ${measurements.dia}    ${measurements.pulse}"),
+          Text("Pills: ${measurements.pills}"),
         ],
       ),
     );

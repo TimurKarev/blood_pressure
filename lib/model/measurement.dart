@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Measurement {
   int sys;
   int dia;
@@ -5,6 +7,18 @@ class Measurement {
   String pills;
   String diagnosis;
   DateTime time;
+
+  factory Measurement.random({DateTime? dateTime}) {
+    dateTime ??= DateTime.now();
+    Random rnd = Random(dateTime.microsecondsSinceEpoch);
+    return Measurement(
+        sys: 60 + rnd.nextInt(220-90),
+        dia: 58 + rnd.nextInt(120-58),
+        pulse: 50 + rnd.nextInt(70-50),
+        pills: "None",
+        diagnosis: "Something",
+        time: dateTime);
+  }
 
 //<editor-fold desc="Data Methods">
 
@@ -20,14 +34,14 @@ class Measurement {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Measurement &&
-          runtimeType == other.runtimeType &&
-          sys == other.sys &&
-          dia == other.dia &&
-          pulse == other.pulse &&
-          pills == other.pills &&
-          diagnosis == other.diagnosis &&
-          time == other.time);
+          (other is Measurement &&
+              runtimeType == other.runtimeType &&
+              sys == other.sys &&
+              dia == other.dia &&
+              pulse == other.pulse &&
+              pills == other.pills &&
+              diagnosis == other.diagnosis &&
+              time == other.time);
 
   @override
   int get hashCode =>
