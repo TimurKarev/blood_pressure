@@ -15,22 +15,28 @@ final dbProvider = Provider<DatabaseProvider>((ref) {
 class DatabaseProvider {
 
   final tableName = 'Measurement';
-  late Database database;
+  Database? _database;
 
-  DatabaseProvider() {
-    open();
+  Future<Database> get database async {
+    if (_database == null) {
+      await open();
+    }
+    return _database!;
   }
 
-  open() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+  Future<void> open() async {
+    var databasePath = await getDatabasesPath();
     //"ReactiveTodo.db is our database instance name
-    String path = join(documentsDirectory.path, "Measurement.db");
-    database = await openDatabase(path,
+    print(databasePath.toString());
+    String path = join(databasePath, "Measurement.db");
+    _database = await openDatabase(path,
         version: 1, onCreate: initDB, onUpgrade: onUpgrade);
   }
 
   close() async {
-    await database.close();
+    if (_database!= null) {
+      await _database!.close();
+    }
   }
 
   //This is optional, and only used for changing DB schema migrations
@@ -45,7 +51,7 @@ class DatabaseProvider {
         "dia INTEGER, "
         "pulse INTEGER, "
         "pills TEXT, "
-        "diagnosis TEXT, "
-        ")");
+        "diagnosis TEXT "
+        ");");
   }
 }

@@ -11,6 +11,10 @@ class MeasurementRepository extends ChangeNotifier {
 
   MeasurementRepository(this._measurementDao);
 
+  Future<int> getHistoryLength() async {
+    return await _measurementDao.getTableLength();
+  }
+
   Future<int> addMeasurement(Measurement measurement) async {
     final result = await _measurementDao.addMeasurement(measurement.toMap());
     if (result != 0) {
