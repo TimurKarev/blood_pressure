@@ -34,6 +34,16 @@ class EmptyCard extends StatelessWidget {
                         time: DateTime.now(),
                       ),
                     );
+                // context.read(dbRepositoryProvider).addMeasurement(
+                //   Measurement(
+                //     sys: 20,
+                //     diagnosis: 'Norm',
+                //     pills: 'None',
+                //     pulse: 60,
+                //     dia: 180,
+                //     time: DateTime.utc(1989, 11, 9),
+                //   ),
+                // );
               },
               child: const Text("Enter ther first measurement"),
             ),

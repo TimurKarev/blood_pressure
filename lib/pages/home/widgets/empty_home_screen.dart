@@ -1,11 +1,9 @@
 import 'package:blood_pressure/pages/home/widgets/empty_card.dart';
-import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class EmptyHomeScreen extends StatelessWidget {
+  const EmptyHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +12,14 @@ class HomePage extends StatelessWidget {
         children: [
           Column(
             children: [
-              Flexible(
+              const Flexible(
                 flex: 2,
                 fit: FlexFit.tight,
                 child: Center(
                   child: Text("Home"),
                 ),
               ),
-              Flexible(
+              const Flexible(
                 flex: 3,
                 fit: FlexFit.tight,
                 child: SizedBox(
@@ -46,8 +44,11 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Container(
                 color: Colors.red,
-                child: HistoryWidget(
-                  controller: controller,
+                child: Column(
+                  children: const [
+                    Text("History"),
+                    Text("Waiting for you results"),
+                  ],
                 ),
               ),
             ),
