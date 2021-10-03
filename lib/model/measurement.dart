@@ -4,6 +4,7 @@ class Measurement {
   int pulse;
   String pills;
   String diagnosis;
+  DateTime time;
 
 //<editor-fold desc="Data Methods">
 
@@ -13,6 +14,7 @@ class Measurement {
     required this.pulse,
     required this.pills,
     required this.diagnosis,
+    required this.time,
   });
 
   @override
@@ -24,7 +26,8 @@ class Measurement {
           dia == other.dia &&
           pulse == other.pulse &&
           pills == other.pills &&
-          diagnosis == other.diagnosis);
+          diagnosis == other.diagnosis &&
+          time == other.time);
 
   @override
   int get hashCode =>
@@ -32,7 +35,8 @@ class Measurement {
       dia.hashCode ^
       pulse.hashCode ^
       pills.hashCode ^
-      diagnosis.hashCode;
+      diagnosis.hashCode ^
+      time.hashCode;
 
   @override
   String toString() {
@@ -42,6 +46,7 @@ class Measurement {
         ' pulse: $pulse,' +
         ' pills: $pills,' +
         ' diagnosis: $diagnosis,' +
+        ' time: $time,' +
         '}';
   }
 
@@ -51,6 +56,7 @@ class Measurement {
     int? pulse,
     String? pills,
     String? diagnosis,
+    DateTime? time,
   }) {
     return Measurement(
       sys: sys ?? this.sys,
@@ -58,6 +64,7 @@ class Measurement {
       pulse: pulse ?? this.pulse,
       pills: pills ?? this.pills,
       diagnosis: diagnosis ?? this.diagnosis,
+      time: time ?? this.time,
     );
   }
 
@@ -68,16 +75,20 @@ class Measurement {
       'pulse': this.pulse,
       'pills': this.pills,
       'diagnosis': this.diagnosis,
+      'time': this.time.microsecondsSinceEpoch,
     };
   }
 
   factory Measurement.fromMap(Map<String, dynamic> map) {
+    int microSeconds = map['time'];
+    DateTime timeDate = DateTime.fromMicrosecondsSinceEpoch(microSeconds);
     return Measurement(
       sys: map['sys'] as int,
       dia: map['dia'] as int,
       pulse: map['pulse'] as int,
       pills: map['pills'] as String,
       diagnosis: map['diagnosis'] as String,
+      time: timeDate,
     );
   }
 

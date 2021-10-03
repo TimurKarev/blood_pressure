@@ -51,6 +51,7 @@ class DatabaseProvider {
         "dia INTEGER, "
         "pulse INTEGER, "
         "pills TEXT, "
+        "time INTEGER, "
         "diagnosis TEXT "
         ");");
   }

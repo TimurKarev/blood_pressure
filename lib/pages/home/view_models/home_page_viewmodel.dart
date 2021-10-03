@@ -9,5 +9,6 @@ final isHistoryEmptyProvider = FutureProvider<bool>((ref) async {
 
 final historyListProvider = FutureProvider<List<Measurement>>((ref) async {
   final dbRepo = ref.watch(dbRepositoryProvider);
-  return await dbRepo.getAllMeasurements();
+  final normList = await dbRepo.getAllMeasurements();
+  return List.from(normList.reversed);
 });

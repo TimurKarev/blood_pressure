@@ -1,5 +1,4 @@
 import 'package:blood_pressure/model/measurement.dart';
-import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:blood_pressure/repository/measurement_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +31,7 @@ class EmptyCard extends StatelessWidget {
                         pills: 'None',
                         pulse: 60,
                         dia: 180,
+                        time: DateTime.now(),
                       ),
                     );
               },
