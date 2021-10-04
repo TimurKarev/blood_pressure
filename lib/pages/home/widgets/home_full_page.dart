@@ -1,13 +1,10 @@
-import 'package:blood_pressure/model/measurement.dart';
-import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
+import 'package:blood_pressure/pages/add/add_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/bottom_button.dart';
 import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
-import 'package:blood_pressure/pages/home/widgets/info_card.dart';
 import 'package:blood_pressure/pages/home/widgets/last_measure_card.dart';
-import 'package:blood_pressure/repository/measurement_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 enum ButtonButtonEnum {
   statistic,
@@ -23,7 +20,13 @@ class HomeFullPage extends StatelessWidget {
   void buttonPressed(BuildContext context, ButtonButtonEnum button) {
     switch (button) {
       case ButtonButtonEnum.add:
-        context.read(viewModelProvider).addMeasurement(Measurement.random());
+        //context.read(viewModelProvider).addMeasurement(Measurement.random());
+        showGeneralDialog(
+            context: context,
+            pageBuilder: (BuildContext ctx, Animation animation,
+                Animation secondAnimation) {
+              return const AddWidget();
+            });
         break;
       case ButtonButtonEnum.statistic:
       case ButtonButtonEnum.settings:

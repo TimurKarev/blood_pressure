@@ -10,17 +10,17 @@ enum HomePageLandingState {
 }
 
 final viewModelProvider =
-    ChangeNotifierProvider<ViewModel>(
-        (ref) => ViewModel(ref.read(dbRepositoryProvider)));
+    ChangeNotifierProvider<HomePageViewModel>(
+        (ref) => HomePageViewModel(ref.read(dbRepositoryProvider)));
 
-class ViewModel extends ChangeNotifier {
+class HomePageViewModel extends ChangeNotifier {
   final MeasurementRepository repository;
 
   HomePageLandingState isEmptyState = HomePageLandingState.loading;
   List<Measurement> historyMeasurements = [];
   Measurement? lastMeasurement;
 
-  ViewModel(this.repository) {
+  HomePageViewModel(this.repository) {
     update();
   }
 
