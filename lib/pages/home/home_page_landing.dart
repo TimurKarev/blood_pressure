@@ -6,22 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePageLanding extends ConsumerWidget {
-  const HomePageLanding({Key? key}) : super(key: key);
+  HomePageLanding({Key? key}) : super(key: key);
+
+  final homePageLandingProvider = Provider<HomePageLandingState>(
+      (ref) => ref.watch(viewModelProvider).isEmptyState);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    AsyncValue<bool> measurements = watch(isHistoryEmptyProvider);
-    return measurements.when(
-      data: (data) {
-        if (data) {
-          return const HomeFullPageLanding();
-        }
+    final widgetSate = watch(homePageLandingProvider);
+    switch (widgetSate) {
+      case HomePageLandingState.empty:
+      case HomePageLandingState.loading:
         return const EmptyHomeScreen();
-      },
-      loading: () => const Center(child: CircularProgressIndicator.adaptive()),
-      error: (error, _) => Text(
-        error.toString(),
-      ),
-    );
+      case HomePageLandingState.notEmpty:
+        return const HomeFullPage();
+    }
   }
 }

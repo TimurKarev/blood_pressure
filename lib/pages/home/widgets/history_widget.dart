@@ -1,27 +1,22 @@
 import 'package:blood_pressure/model/measurement.dart';
+import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:blood_pressure/pages/home/widgets/info_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-class HistoryWidget extends StatelessWidget {
-
+class HistoryWidget extends ConsumerWidget {
   final ScrollController controller;
-  final List<Measurement> measurements;
 
   const HistoryWidget({
-    required this.measurements,
     required this.controller,
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    List<Measurement> historyMeasurements = [];
-    if (measurements.isNotEmpty) {
-      historyMeasurements = measurements.sublist(1);
-    }
-
+  Widget build(BuildContext context, ScopedReader watch) {
+    List<Measurement> measurements =
+        watch(viewModelProvider).historyMeasurements;
     return CustomScrollView(
       controller: controller,
       slivers: [
@@ -30,10 +25,10 @@ class HistoryWidget extends StatelessWidget {
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
-                (context, index) {
-              return InfoCard(historyMeasurements[index]);
+            (context, index) {
+              return InfoCard(measurements[index]);
             },
-            childCount: historyMeasurements.length,
+            childCount: measurements.length,
           ),
         ),
       ],

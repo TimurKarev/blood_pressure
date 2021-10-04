@@ -3,6 +3,7 @@ import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:blood_pressure/pages/home/widgets/bottom_button.dart';
 import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/info_card.dart';
+import 'package:blood_pressure/pages/home/widgets/last_measure_card.dart';
 import 'package:blood_pressure/repository/measurement_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +16,14 @@ enum ButtonButtonEnum {
 }
 
 class HomeFullPage extends StatelessWidget {
-  final List<Measurement> measurements;
+  //final List<Measurement> measurements;
 
-  const HomeFullPage(this.measurements, {Key? key}) : super(key: key);
+  const HomeFullPage({Key? key}) : super(key: key);
 
   void buttonPressed(BuildContext context, ButtonButtonEnum button) {
     switch (button) {
       case ButtonButtonEnum.add:
-        context.read(dbRepositoryProvider).addMeasurement(Measurement.random());
+        context.read(viewModelProvider).addMeasurement(Measurement.random());
         break;
       case ButtonButtonEnum.statistic:
       case ButtonButtonEnum.settings:
@@ -43,14 +44,14 @@ class HomeFullPage extends StatelessWidget {
                   child: Text("Home"),
                 ),
               ),
-              Flexible(
+              const Flexible(
                 flex: 3,
                 fit: FlexFit.tight,
                 child: SizedBox(
                   width: double.infinity,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: InfoCard(measurements[0]),
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: LastMeasureCard(),
                   ),
                 ),
               ),
@@ -70,7 +71,7 @@ class HomeFullPage extends StatelessWidget {
                 color: CupertinoColors.lightBackgroundGray,
                 child: HistoryWidget(
                   controller: controller,
-                  measurements: measurements,
+                  //measurements: measurements,
                 ),
               ),
             ),
@@ -122,19 +123,5 @@ class HomeFullPage extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class HomeFullPageLanding extends ConsumerWidget {
-  const HomeFullPageLanding({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    AsyncValue<List<Measurement>> measurements = watch(historyListProvider);
-    return measurements.when(
-        data: (data) => HomeFullPage(data),
-        loading: () =>
-            const Center(child: CircularProgressIndicator.adaptive()),
-        error: (error, _) => Text("$error"));
   }
 }
