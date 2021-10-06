@@ -2,6 +2,7 @@ import 'package:blood_pressure/pages/add/add_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/bottom_button.dart';
 import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/last_measure_card.dart';
+import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +45,7 @@ class HomeFullPage extends StatelessWidget {
                 flex: 2,
                 fit: FlexFit.tight,
                 child: Center(
-                  child: Text("Home"),
+                  child: Text("Home", style: Styles.headerNormal,),
                 ),
               ),
               const Flexible(

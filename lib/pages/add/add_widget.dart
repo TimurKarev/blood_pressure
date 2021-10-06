@@ -66,71 +66,84 @@ class InputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      //crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                flex: 1,
-                child: Container(),
-              ),
-              const Flexible(
-                flex: 8,
-                child: Text("New Measurement"),
-              ),
-              const Flexible(
-                flex: 1,
-                child: Icon(CupertinoIcons.xmark_circle_fill),
-              ),
-            ],
-          ),
+        Flexible(
+          flex:2,
+          child: Fake(""),
+          // child: Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Flexible(
+          //         flex: 1,
+          //         child: Container(),
+          //       ),
+          //       const Flexible(
+          //         flex: 8,
+          //         child: Text("New Measurement"),
+          //       ),
+          //       const Flexible(
+          //         flex: 1,
+          //         child: Icon(CupertinoIcons.xmark_circle_fill),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Flexible(
-                flex: 2,
-                child: Text("SYS/DIA"),
-              ),
-              Flexible(
-                flex: 6,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  ),
-                  child: const SysDiaWidget(),
-                ),
-              ),
-            ],
-          ),
+        Flexible(
+          flex:5,
+          child: Fake(""),
+          // child: Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       const Flexible(
+          //         flex: 2,
+          //         child: Text("SYS/DIA"),
+          //       ),
+          //       Flexible(
+          //         flex: 6,
+          //         child: Container(
+          //           decoration: BoxDecoration(
+          //             border: Border.all(),
+          //             borderRadius: const BorderRadius.all(Radius.circular(25)),
+          //           ),
+          //           child: const SysDiaWidget(),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Flexible(
-                flex: 2,
-                child: Text("Pulse"),
-              ),
-              Flexible(
-                flex: 6,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  ),
-                  child: const PulseWidget(),
-                ),
-              ),
-            ],
-          ),
+        Flexible(
+          flex:5,
+          child: Fake(""),
+          // child: Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       const Flexible(
+          //         flex: 2,
+          //         child: Text("Pulse"),
+          //       ),
+          //       Flexible(
+          //         flex: 6,
+          //         child: Container(
+          //           decoration: BoxDecoration(
+          //             border: Border.all(),
+          //             borderRadius: const BorderRadius.all(Radius.circular(25)),
+          //           ),
+          //           child: const PulseWidget(),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ),
       ],
     );
