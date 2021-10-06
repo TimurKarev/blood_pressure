@@ -1,5 +1,9 @@
+import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
+import 'package:blood_pressure/pages/add/widgets/input_field.dart';
 import 'package:blood_pressure/pages/utils/fake.dart';
 import 'package:blood_pressure/pages/utils/top_angles_clipper.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 
 class AddWidget extends StatelessWidget {
@@ -59,6 +63,8 @@ class AddWidget extends StatelessWidget {
 }
 
 class InputWidget extends StatelessWidget {
+  final double _textFieldRadius = 6.0;
+
   const InputWidget({
     Key? key,
   }) : super(key: key);
@@ -70,80 +76,91 @@ class InputWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Flexible(
-          flex:2,
-          child: Fake(""),
-          // child: Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Flexible(
-          //         flex: 1,
-          //         child: Container(),
-          //       ),
-          //       const Flexible(
-          //         flex: 8,
-          //         child: Text("New Measurement"),
-          //       ),
-          //       const Flexible(
-          //         flex: 1,
-          //         child: Icon(CupertinoIcons.xmark_circle_fill),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          flex: 2,
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Container(),
+                ),
+                const Flexible(
+                  flex: 8,
+                  child: Text(
+                    "New Measurement",
+                    style: Styles.headerNormal,
+                  ),
+                ),
+                const Flexible(
+                  flex: 1,
+                  child: Icon(CupertinoIcons.xmark_circle_fill),
+                ),
+              ],
+            ),
+          ),
         ),
         Flexible(
-          flex:5,
-          child: Fake(""),
-          // child: Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       const Flexible(
-          //         flex: 2,
-          //         child: Text("SYS/DIA"),
-          //       ),
-          //       Flexible(
-          //         flex: 6,
-          //         child: Container(
-          //           decoration: BoxDecoration(
-          //             border: Border.all(),
-          //             borderRadius: const BorderRadius.all(Radius.circular(25)),
-          //           ),
-          //           child: const SysDiaWidget(),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          flex: 5,
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Flexible(
+                  flex: 2,
+                  child: Text(
+                    "SYS/DIA",
+                    style: Styles.headerSmall,
+                  ),
+                ),
+                Flexible(
+                  flex: 6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(_textFieldRadius)),
+                    ),
+                    child: SysDiaWidget(),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         Flexible(
-          flex:5,
-          child: Fake(""),
-          // child: Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       const Flexible(
-          //         flex: 2,
-          //         child: Text("Pulse"),
-          //       ),
-          //       Flexible(
-          //         flex: 6,
-          //         child: Container(
-          //           decoration: BoxDecoration(
-          //             border: Border.all(),
-          //             borderRadius: const BorderRadius.all(Radius.circular(25)),
-          //           ),
-          //           child: const PulseWidget(),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          flex: 5,
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Flexible(
+                  flex: 2,
+                  child: Text(
+                    "Pulse",
+                    style: Styles.headerSmall,
+                  ),
+                ),
+                Flexible(
+                  flex: 6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(_textFieldRadius)),
+                    ),
+                    child: const PulseWidget(),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );
@@ -151,16 +168,48 @@ class InputWidget extends StatelessWidget {
 }
 
 class SysDiaWidget extends StatelessWidget {
-  const SysDiaWidget({Key? key}) : super(key: key);
+  SysDiaWidget({Key? key}) : super(key: key);
+
+  final sysController = TextEditingController();
+  final diaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("120"),
-        Text("/"),
-        Text("80"),
+        InputField(
+          width: 40.0,
+          placeholder: "120",
+          maxLength: 3,
+          controller: sysController,
+          onEditingComplete: () {
+            if(sysController.text.length > 1) {
+              try {
+                final sys = int.parse(sysController.text);
+                context.read(addPageViewModelProvider).sys = sys;
+              } catch (e) {
+                sysController.text = '';
+              }
+            }
+          },
+        ),
+        const Text(
+          "/",
+          style: Styles.headerNormalGray,
+        ),
+        SizedBox(
+          width: 28.0,
+          child: CupertinoTextField(
+            padding: EdgeInsets.all(1.0),
+            placeholder: "80",
+            maxLength: 2,
+            maxLines: 1,
+            minLines: 1,
+            style: Styles.headerNormal,
+            cursorColor: Styles.cursorColor,
+          ),
+        ),
       ],
     );
   }
@@ -175,7 +224,18 @@ class PulseWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(CupertinoIcons.heart_fill),
-        Text("60"),
+        SizedBox(
+          width: 28.0,
+          child: CupertinoTextField(
+            padding: EdgeInsets.all(1.0),
+            placeholder: "80",
+            maxLength: 2,
+            maxLines: 1,
+            minLines: 1,
+            style: Styles.headerNormal,
+            cursorColor: Styles.cursorColor,
+          ),
+        ),
       ],
     );
   }

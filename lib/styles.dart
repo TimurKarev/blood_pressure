@@ -15,8 +15,34 @@ abstract class Styles {
     // fontWeight: FontWeight.w600,
   );
 
+  static const TextStyle textInputText = TextStyle(
+    fontSize: 20,
+    // fontStyle: FontStyle.normal,
+    // fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle headerNormalGray = TextStyle(
+    color: CupertinoColors.inactiveGray,
+    fontSize: 20,
+    // fontStyle: FontStyle.normal,
+    // fontWeight: FontWeight.w600,
+  );
+
   static const TextStyle headerBig = TextStyle(
     fontSize: 24,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle headerBigGrey = TextStyle(
+    color: CupertinoColors.inactiveGray,
+    fontSize: 24,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle headerSmall = TextStyle(
+    fontSize: 18,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.w600,
   );
@@ -50,9 +76,9 @@ abstract class Styles {
     color: CupertinoColors.inactiveGray,
   );
 
-  static const Color productRowDivider = Color(0xFFD9D9D9);
+  static const Color primaryColor = CupertinoColors.white;
 
-  static const Color scaffoldBackground = Color(0xfff0f0f0);
+  static const Color cursorColor = CupertinoColors.black;
 
   static const Color searchBackground = Color(0xffe0e0e0);
 
