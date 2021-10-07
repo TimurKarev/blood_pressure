@@ -16,7 +16,7 @@ abstract class Styles {
   );
 
   static const TextStyle textInputText = TextStyle(
-    fontSize: 20,
+    fontSize: 24,
     // fontStyle: FontStyle.normal,
     // fontWeight: FontWeight.w600,
   );

@@ -7,16 +7,16 @@ class InputField extends StatelessWidget {
   final int maxLength;
   final String placeholder;
   //final bool actionDone;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final FocusNode? focusNode;
   final Function() onEditingComplete;
 
   const InputField({
     Key? key,
     this.maxLength = 2,
-    required this.width,
+    this.width = double.infinity,
     required this.placeholder,
-    required this.controller,
+    this.controller,
     this.focusNode,
     //required this.update,
     required this.onEditingComplete,
@@ -25,17 +25,22 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: Focus(
-        onFocusChange: (bool focus) {
-          if (!focus) {
-            onEditingComplete();
-          }
-        },
+    return Focus(
+      onFocusChange: (bool focus) {
+        if (!focus) {
+          onEditingComplete();
+        }
+      },
+      child: SizedBox(
+        width: width,
         child: CupertinoTextField(
           keyboardType: TextInputType.number,
           padding: const EdgeInsets.all(1.0),
+          decoration: BoxDecoration(
+            border: Border.all(),
+            borderRadius:
+            BorderRadius.all(Radius.circular(7.0)),
+          ),
           controller: controller,
           placeholder: placeholder,
           maxLength: maxLength,
