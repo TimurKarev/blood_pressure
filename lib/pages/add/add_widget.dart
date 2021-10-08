@@ -1,8 +1,6 @@
-import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
-import 'package:blood_pressure/pages/add/widgets/input_field.dart';
-import 'package:blood_pressure/pages/utils/fake.dart';
+import 'package:blood_pressure/pages/add/widgets/input_widget.dart';
 import 'package:blood_pressure/pages/utils/top_angles_clipper.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -18,7 +16,7 @@ class AddWidget extends StatelessWidget {
       child: ClipPath(
         clipper: TopAnglesClipper(radius: 30.0),
         child: Container(
-          color: CupertinoColors.lightBackgroundGray,
+          color: Styles.primaryColor,
           child: Row(
             children: [
               Flexible(
@@ -36,28 +34,14 @@ class AddWidget extends StatelessWidget {
                     Expanded(
                       flex: 30,
                       child: Column(
-                        children: [
+                        children: const [
                           Flexible(
                             flex: 3,
                             child: InputWidget(),
                           ),
                           Flexible(
                             flex: 7,
-                            child: Fake(
-                              "",
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: SizedBox(
-                                  width: 200,
-                                  height: 35,
-                                  child: Fake(
-                                    "",
-                                    radius: 10,
-                                    border: true,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            child: ButtonWidget(),
                           ),
                         ],
                       ),
@@ -81,112 +65,36 @@ class AddWidget extends StatelessWidget {
   }
 }
 
-class InputWidget extends StatelessWidget {
-  final double _textFieldRadius = 6.0;
-
-  const InputWidget({
+class ButtonWidget extends StatelessWidget {
+  const ButtonWidget({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      //crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Flexible(
-          flex: 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                flex: 1,
-                child: Container(),
-              ),
-              const Flexible(
-                flex: 8,
-                child: Text(
-                  "New Measurement",
-                  style: Styles.headerNormal,
-                ),
-              ),
-              const Flexible(
-                flex: 1,
-                child: Icon(CupertinoIcons.xmark_circle_fill),
-              ),
-            ],
-          ),
-        ),
-        Flexible(
-          flex: 2,
+          flex: 1,
           child: Container(),
         ),
         Flexible(
-          flex: 4,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Flexible(
-                flex: 1,
-                child: Text(
-                  "SYS",
-                  style: Styles.headerNormal,
-                ),
-              ),
-              Flexible(
-                flex: 3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InputField(
-                      width: 70.0,
-                      placeholder: '120',
-                      onEditingComplete: () {},
-                      controller: null,
-                    ),
-                    const Text(
-                      "DIA",
-                      style: Styles.headerNormal,
-                    ),
-                    InputField(
-                      width: 70.0,
-                      placeholder: '80',
-                      onEditingComplete: () {},
-                      controller: null,
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          flex: 18,
+          child: SizedBox(
+            width: double.infinity,
+            child: CupertinoButton(
+              color: Styles.buttonColor,
+              disabledColor: Styles.buttonDisableColor,
+              child: Text("Continue", style: Styles.base,),
+              onPressed: null,//() {  },
+            ),
           ),
         ),
         Flexible(
-          flex: 2,
+          flex: 1,
           child: Container(),
-        ),
-        Flexible(
-          flex: 4,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Flexible(
-                flex: 1,
-                child: Text(
-                  "Pulse",
-                  style: Styles.headerSmall,
-                ),
-              ),
-              Flexible(
-                flex: 3,
-                child: InputField(
-                  //width: 70.0,
-                  placeholder: '60',
-                  onEditingComplete: () {},
-                  controller: null,
-                ),
-              ),
-            ],
-          ),
         ),
       ],
     );
