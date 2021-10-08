@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 
-class InputWidget extends StatelessWidget {
+class TopInputWidget extends StatelessWidget {
   final double _textFieldRadius = 6.0;
 
-  const InputWidget({
+  const TopInputWidget({
     Key? key,
   }) : super(key: key);
 
@@ -18,33 +18,10 @@ class InputWidget extends StatelessWidget {
       children: [
         Flexible(
           flex: 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                flex: 1,
-                child: Container(),
-              ),
-              const Flexible(
-                flex: 8,
-                child: Text(
-                  "New Measurement",
-                  style: Styles.headerNormal,
-                ),
-              ),
-              const Flexible(
-                flex: 1,
-                child: Icon(CupertinoIcons.xmark_circle_fill),
-              ),
-            ],
-          ),
-        ),
-        Flexible(
-          flex: 2,
           child: Container(),
         ),
         Flexible(
-          flex: 4,
+          flex: 14,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -87,7 +64,7 @@ class InputWidget extends StatelessWidget {
           child: Container(),
         ),
         Flexible(
-          flex: 4,
+          flex: 14,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

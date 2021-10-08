@@ -1,4 +1,4 @@
-import 'package:blood_pressure/pages/add/add_widget.dart';
+import 'package:blood_pressure/pages/add/add_page.dart';
 import 'package:blood_pressure/pages/home/widgets/bottom_button.dart';
 import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/last_measure_card.dart';
@@ -26,7 +26,7 @@ class HomeFullPage extends StatelessWidget {
             context: context,
             pageBuilder: (BuildContext ctx, Animation animation,
                 Animation secondAnimation) {
-              return const AddWidget();
+              return const AddPage();
             });
         break;
       case ButtonButtonEnum.statistic:
