@@ -6,21 +6,25 @@ class InputField extends StatelessWidget {
   final double width;
   final int maxLength;
   final String placeholder;
+
+  final double borderRadius;
+
   //final bool actionDone;
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final FocusNode? focusNode;
-  final Function() onEditingComplete;
+  final Function() valueChanged;
 
   const InputField({
     Key? key,
     this.maxLength = 2,
     this.width = double.infinity,
     required this.placeholder,
-    this.controller,
+    required this.controller,
     this.focusNode,
     //required this.update,
-    required this.onEditingComplete,
- //   this.actionDone = false,
+    required this.valueChanged,
+    this.borderRadius = 7.0,
+    //   this.actionDone = false,
   }) : super(key: key);
 
   @override
@@ -28,18 +32,17 @@ class InputField extends StatelessWidget {
     return Focus(
       onFocusChange: (bool focus) {
         if (!focus) {
-          onEditingComplete();
+          //valueChanged();
         }
       },
       child: SizedBox(
         width: width,
         child: CupertinoTextField(
           keyboardType: TextInputType.number,
-          padding: const EdgeInsets.all(1.0),
+          padding: const EdgeInsets.fromLTRB(5.0, 1.0, 1.0, 1.0),
           decoration: BoxDecoration(
             border: Border.all(),
-            borderRadius:
-            BorderRadius.all(Radius.circular(7.0)),
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
           ),
           controller: controller,
           placeholder: placeholder,
@@ -50,7 +53,8 @@ class InputField extends StatelessWidget {
           cursorColor: Styles.cursorColor,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           //onChanged: (_) => update,
-          onEditingComplete: onEditingComplete,
+          //onEditingComplete: valueChanged,
+          onChanged: (_) => valueChanged(),
           textInputAction: TextInputAction.done,
         ),
       ),

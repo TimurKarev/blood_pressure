@@ -1,14 +1,21 @@
+import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
+class ButtonWidget extends ConsumerWidget {
+  ButtonWidget({
     Key? key,
   }) : super(key: key);
 
+  final enableProvider = Provider<bool>(
+      (ref) => ref.watch(addPageViewModelProvider).isButtonEnabled);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final enable = watch(enableProvider);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -24,8 +31,11 @@ class ButtonWidget extends StatelessWidget {
             child: CupertinoButton(
               color: Styles.buttonColor,
               disabledColor: Styles.buttonDisableColor,
-              child: Text("Continue", style: Styles.base,),
-              onPressed: null,//() {  },
+              child: Text(
+                context.read(addPageViewModelProvider).buttonText,
+                style: Styles.base,
+              ),
+              onPressed: enable ? () {} : null,
             ),
           ),
         ),
