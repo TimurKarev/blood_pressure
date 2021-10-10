@@ -9,6 +9,13 @@ abstract class Styles {
     // fontWeight: FontWeight.w600,
   );
 
+  static const TextStyle inputBageText = TextStyle(
+    fontSize: 16,
+    color: CupertinoColors.white,
+    // fontStyle: FontStyle.normal,
+    // fontWeight: FontWeight.w600,
+  );
+
   static const TextStyle headerNormal = TextStyle(
     fontSize: 20,
     // fontStyle: FontStyle.normal,
@@ -45,6 +52,26 @@ abstract class Styles {
     fontSize: 18,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle topInputCardText = TextStyle(
+    fontSize: 36,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle topInputCardTextGrey = TextStyle(
+    fontSize: 36,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w600,
+    color: CupertinoColors.inactiveGray,
+  );
+
+  static const TextStyle smallTopCardTextGrey = TextStyle(
+    fontSize: 12,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w600,
+    color: CupertinoColors.inactiveGray,
   );
 
   static const Color primaryColor = CupertinoColors.white;

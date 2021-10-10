@@ -1,4 +1,5 @@
 import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
+import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,7 @@ class ButtonWidget extends ConsumerWidget {
   }) : super(key: key);
 
   final enableProvider = Provider<bool>(
-      (ref) => ref.watch(addPageViewModelProvider).isButtonEnabled);
+      (ref) => ref.watch(addPageViewModelProvider).enableButton);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -35,7 +36,9 @@ class ButtonWidget extends ConsumerWidget {
                 context.read(addPageViewModelProvider).buttonText,
                 style: Styles.base,
               ),
-              onPressed: enable ? () {} : null,
+              onPressed: enable ? () {
+                context.read(addPageViewModelProvider).buttonPressed();
+              } : null,
             ),
           ),
         ),

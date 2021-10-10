@@ -66,7 +66,7 @@ class AddPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const Flexible(
+                          Flexible(
                             flex: 30,
                             child: LandingInputWidget(),
                           ),

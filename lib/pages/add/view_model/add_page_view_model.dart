@@ -5,8 +5,9 @@ final addPageViewModelProvider =
     ChangeNotifierProvider<AddPageViewModel>((ref) => AddPageViewModel());
 
 class AddPageViewModel extends ChangeNotifier {
-  bool isButtonEnabled = false;
+  bool enableButton = false;
   String buttonText = 'Continue';
+  bool secondPartEdit = false;
 
   int? _sys;
   int? _dia;
@@ -17,20 +18,38 @@ class AddPageViewModel extends ChangeNotifier {
     updateStates();
   }
 
+  int? get sys => _sys;
+
   set dia(int? value) {
     _dia = value;
     updateStates();
   }
+
+  int? get dia => _dia;
 
   set pulse(int? value) {
     _pulse = value;
     updateStates();
   }
 
+  int? get pulse => _pulse;
+
+  void buttonPressed() {
+    if (_checkTopState()) {
+      enableButton = false;
+      buttonText = "Add measurement";
+      secondPartEdit = true;
+      notifyListeners();
+    } else {
+      enableButton = false;
+      updateStates();
+    }
+  }
+
   updateStates() {
-    final bool prevValue = isButtonEnabled;
-    isButtonEnabled = _checkTopState();
-    if (prevValue != isButtonEnabled) {
+    final bool prevValue = enableButton;
+    enableButton = _checkTopState();
+    if (prevValue != enableButton) {
       notifyListeners();
     }
   }

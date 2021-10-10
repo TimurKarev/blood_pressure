@@ -1,23 +1,35 @@
+import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
+import 'package:blood_pressure/pages/add/widgets/bottom_widget.dart';
 import 'package:blood_pressure/pages/add/widgets/button_widget.dart';
 import 'package:blood_pressure/pages/add/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LandingInputWidget extends StatelessWidget {
-  const LandingInputWidget({
+  LandingInputWidget({
     Key? key,
   }) : super(key: key);
+
+  final inputStageProvider = Provider<bool>(
+      (ref) => ref.watch(addPageViewModelProvider).secondPartEdit);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Flexible(
-          flex: 10,
-          child: TopInputWidget(),
+          flex: 17,
+          child: Consumer(
+            builder: (BuildContext context,
+                T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {
+              final isSecondStage = watch(inputStageProvider);
+              return isSecondStage ? BottomInputWidget() : TopInputWidget();
+            },
+          ),
         ),
         Flexible(
-          flex: 3,
+          flex: 2,
           child: ButtonWidget(),
         ),
       ],

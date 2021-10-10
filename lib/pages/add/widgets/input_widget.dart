@@ -1,12 +1,11 @@
 import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
-import 'package:blood_pressure/pages/add/widgets/input_field.dart';
+import 'package:blood_pressure/pages/add/widgets/tip_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TopInputWidget extends StatelessWidget {
-  final double _textFieldRadius = 6.0;
 
   final sysController = TextEditingController();
   final diaController = TextEditingController();
