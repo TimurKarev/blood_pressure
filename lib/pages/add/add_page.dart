@@ -1,8 +1,10 @@
+import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
 import 'package:blood_pressure/pages/add/widgets/landing_input_widget.dart';
 import 'package:blood_pressure/pages/utils/top_angles_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/src/provider.dart';
 
 class AddPage extends StatelessWidget {
   const AddPage({
@@ -11,6 +13,7 @@ class AddPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read(addPageViewModelProvider).init();
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
       child: ClipPath(

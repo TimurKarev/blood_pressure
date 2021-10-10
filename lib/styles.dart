@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class Styles {
-
   static const TextStyle base = TextStyle(
     fontSize: 16,
     // fontStyle: FontStyle.normal,
@@ -83,4 +82,16 @@ abstract class Styles {
   static const Color buttonColor = Color(0xffaf52de);
 
   static const Color buttonDisableColor = CupertinoColors.systemGrey2;
+
+  static const Color lowBloodPressureColor = Color(0xff8EAD97);
+
+  static const Color normalPressureColor = Color(0xff8CCD4A);
+
+  static const Color prehypertensionColor = Color(0xffDFBD0B);
+
+  static const Color hypertensionStage1Color = Color(0xffE4A52A);
+
+  static const Color hypertensionStage2Color = Color(0xffF07336);
+
+  static const Color seekEmergencyCareColor = Color(0xffD55932);
 }

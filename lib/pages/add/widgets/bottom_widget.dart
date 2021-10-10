@@ -1,6 +1,7 @@
 import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
 import 'package:blood_pressure/pages/utils/fake.dart';
 import 'package:blood_pressure/styles.dart';
+import 'package:blood_pressure/utils/color_to_diag_mapping.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 
@@ -120,15 +121,15 @@ class TopInputCard extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         height: _bageHeight,
-                        decoration: const BoxDecoration(
-                            color: Colors.red,
+                        decoration: BoxDecoration(
+                            color: getColorFromDiag(viewModel.bageText),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset("assets/png/heart.png"),
-                            Text("  Normal", style: Styles.inputBageText),
+                            Image.asset("assets/png/heart_pulse.png"),
+                            Text("  ${viewModel.bageText}", style: Styles.inputBageText),
                           ],
                         ),
                       ),

@@ -5,9 +5,20 @@ final addPageViewModelProvider =
     ChangeNotifierProvider<AddPageViewModel>((ref) => AddPageViewModel());
 
 class AddPageViewModel extends ChangeNotifier {
+  init() {
+    enableButton = false;
+    buttonText = 'Continue';
+    secondPartEdit = false;
+    bageText = "";
+    _sys = null;
+    _dia = null;
+    _pulse = null;
+  }
+
   bool enableButton = false;
   String buttonText = 'Continue';
   bool secondPartEdit = false;
+  String bageText = "";
 
   int? _sys;
   int? _dia;
@@ -39,6 +50,21 @@ class AddPageViewModel extends ChangeNotifier {
       enableButton = false;
       buttonText = "Add measurement";
       secondPartEdit = true;
+
+      if (sys! < 90) {
+        bageText = "Low blood pressure";
+      } else if (sys! >= 90 && sys! < 120) {
+        bageText = "Normal";
+      } else if (sys! >= 120 && sys! < 140) {
+        bageText = "Prehypertension";
+      } else if (sys! >= 140 && sys! < 170) {
+        bageText = "Hypertension Stage 1";
+      } else if (sys! >= 170 && sys! < 220) {
+        bageText = "Нypertension Stage 2";
+      } else if (sys! >= 220) {
+        bageText = "Seek Emergency Care";
+      }
+
       notifyListeners();
     } else {
       enableButton = false;
