@@ -19,7 +19,7 @@ class LandingInputWidget extends StatelessWidget {
     return Column(
       children: [
         Flexible(
-          flex: 20,
+          flex: 23,
           child: Consumer(
             builder: (BuildContext context,
                 T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {

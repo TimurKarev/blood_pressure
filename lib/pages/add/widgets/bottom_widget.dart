@@ -18,23 +18,19 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Flexible(
-        //   flex: 1,
-        //   child: Container(),
-        // ),
-        const Flexible(
-          flex: 1,
+        const Padding(
+          padding: EdgeInsets.only(bottom: 10.0),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text("Status:", style: Styles.headerNormal),
           ),
         ),
         const Flexible(
-          flex: 4,
+          flex: 3,
           child: TopInputCard(),
         ),
-        const Flexible(
-          flex: 1,
+        const Padding(
+          padding: EdgeInsets.only(top: 15.0),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text("Time:", style: Styles.headerNormal),
@@ -44,8 +40,8 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
           flex: 1,
           child: TimeWidget(),
         ),
-        const Flexible(
-          flex: 1,
+        const Padding(
+          padding: EdgeInsets.only(top: 10.0, bottom:10.0),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text("How do you feel?:", style: Styles.headerNormal),
@@ -55,8 +51,8 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
           flex: 1,
           child: FeelWidget(),
         ),
-        const Flexible(
-          flex: 1,
+        const Padding(
+          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(

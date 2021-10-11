@@ -35,7 +35,7 @@ class _PillsWidgetState extends State<PillsWidget> {
       //mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
-          flex:1,
+          flex: 1,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -69,7 +69,13 @@ class _PillsWidgetState extends State<PillsWidget> {
           ),
         ),
         const SizedBox(height: 5.0),
-        const Flexible(flex:1,child: CupertinoTextField()),
+        const Padding(
+          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+          child: SizedBox(
+            height: 40.0,
+            child: CupertinoTextField(placeholder: "Name of Pills"),
+          ),
+        ),
       ],
     );
   }
