@@ -94,4 +94,11 @@ abstract class Styles {
   static const Color hypertensionStage2Color = Color(0xffF07336);
 
   static const Color seekEmergencyCareColor = Color(0xffD55932);
+
+  static const Color badgeBadColor = Color(0xffFF5B52);
+
+  static const Color badgeNormalColor = Color(0xffF5CF43);
+
+  static const Color badgeGoodColor = Color(0xff8CCD4A);
+
 }

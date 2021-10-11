@@ -47,7 +47,7 @@ class TopInputWidget extends StatelessWidget {
                       controller: sysController,
                       width: 70.0,
                       placeholder: '120',
-                      maxLength: 31,
+                      maxLength: 3,
                       valueChanged: () {
                         final int? sys = _getValue(sysController);
                         viewModel.sys = sys;

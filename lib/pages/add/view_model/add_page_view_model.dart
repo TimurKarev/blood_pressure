@@ -1,55 +1,70 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 final addPageViewModelProvider =
     ChangeNotifierProvider<AddPageViewModel>((ref) => AddPageViewModel());
 
 class AddPageViewModel extends ChangeNotifier {
-  init() {
-    enableButton = false;
-    buttonText = 'Continue';
-    secondPartEdit = false;
-    bageText = "";
-    _sys = null;
-    _dia = null;
-    _pulse = null;
-  }
 
   bool enableButton = false;
   String buttonText = 'Continue';
   bool secondPartEdit = false;
   String bageText = "";
+  bool bottomInputStart = false;
+
+  DateTime dateTime = DateTime.now();
+
+  String feelChoice = "";
 
   int? _sys;
   int? _dia;
   int? _pulse;
 
+  init() {
+    enableButton = false;
+    buttonText = 'Continue';
+    secondPartEdit = false;
+    bageText = "";
+    dateTime = DateTime.now();
+    bottomInputStart = false;
+
+    _sys = null;
+    _dia = null;
+    _pulse = null;
+  }
+
   set sys(int? value) {
     _sys = value;
-    updateStates();
+    _updateStates();
   }
 
   int? get sys => _sys;
 
   set dia(int? value) {
     _dia = value;
-    updateStates();
+    _updateStates();
   }
 
   int? get dia => _dia;
 
   set pulse(int? value) {
     _pulse = value;
-    updateStates();
+    _updateStates();
   }
 
   int? get pulse => _pulse;
+
+  String get date => DateFormat('dd.MM').format(dateTime);
+
+  String get time => DateFormat('hh:mm').format(dateTime);
 
   void buttonPressed() {
     if (_checkTopState()) {
       enableButton = false;
       buttonText = "Add measurement";
       secondPartEdit = true;
+      dateTime = DateTime.now();
 
       if (sys! < 90) {
         bageText = "Low blood pressure";
@@ -68,11 +83,30 @@ class AddPageViewModel extends ChangeNotifier {
       notifyListeners();
     } else {
       enableButton = false;
-      updateStates();
+      _updateStates();
     }
   }
 
-  updateStates() {
+  void feelChoiceChanged(int choice) {
+    switch (choice){
+      case 0:
+        feelChoice = "Good";
+        break;
+      case 1:
+        feelChoice = "Normal";
+        break;
+      case 2:
+        feelChoice = "Bad";
+        break;
+    }
+    if (bottomInputStart==false) {
+      bottomInputStart = true;
+      notifyListeners();
+    }
+
+  }
+
+  _updateStates() {
     final bool prevValue = enableButton;
     enableButton = _checkTopState();
     if (prevValue != enableButton) {

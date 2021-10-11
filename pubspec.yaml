@@ -64,7 +64,12 @@ flutter:
     - assets/svg/hand.svg
     - assets/png/heart.png
     - assets/png/heart_pulse.png
-
+    - assets/png/bad_color.png
+    - assets/png/bad_grey.png
+    - assets/png/normal_color.png
+    - assets/png/normal_grey.png
+    - assets/png/good_color.png
+    - assets/png/good_grey.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
