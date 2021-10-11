@@ -69,11 +69,15 @@ class _PillsWidgetState extends State<PillsWidget> {
           ),
         ),
         const SizedBox(height: 5.0),
-        const Padding(
-          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
           child: SizedBox(
             height: 40.0,
-            child: CupertinoTextField(placeholder: "Name of Pills"),
+            child: CupertinoTextField(
+              scrollPadding: EdgeInsets,
+              enabled: _textFieldEnable,
+              placeholder: "Name of Pills",
+            ),
           ),
         ),
       ],
