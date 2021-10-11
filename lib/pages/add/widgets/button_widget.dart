@@ -1,5 +1,4 @@
 import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
-import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,6 +29,7 @@ class ButtonWidget extends ConsumerWidget {
           child: SizedBox(
             width: double.infinity,
             child: CupertinoButton(
+              padding: EdgeInsets.zero,
               color: Styles.buttonColor,
               disabledColor: Styles.buttonDisableColor,
               child: Text(
