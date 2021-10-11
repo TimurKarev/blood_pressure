@@ -30,7 +30,7 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
           ),
         ),
         const Flexible(
-          flex: 5,
+          flex: 4,
           child: TopInputCard(),
         ),
         const Flexible(
@@ -66,7 +66,7 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
           ),
         ),
         const Flexible(
-          flex: 1,
+          flex: 2,
           child: PillsWidget(),
         ),
       ],

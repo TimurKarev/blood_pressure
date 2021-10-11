@@ -28,59 +28,51 @@ class AddPage extends StatelessWidget {
               ),
               Flexible(
                 flex: 20,
-                child: Column(
-                  children: [
-                    Flexible(
-                      flex: 10,
-                      child: Column(
-                        children: [
-                          Flexible(
-                            flex: 3,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                const Flexible(
-                                  flex: 8,
-                                  child: Text(
-                                    "New Measurement",
-                                    style: Styles.headerNormal,
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: CupertinoButton(
-                                    padding: EdgeInsets.zero,
-                                    alignment: Alignment.bottomRight,
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Icon(
-                                      CupertinoIcons.xmark_circle_fill,
-                                      size: 27,
-                                      color: Styles.iconColor,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+                  child: Column(
+                    children: [
+                      Flexible(
+                        flex: 3,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: Container(),
                             ),
-                          ),
-                          Flexible(
-                            flex: 30,
-                            child: LandingInputWidget(),
-                          ),
-                        ],
+                            const Flexible(
+                              flex: 8,
+                              child: Text(
+                                "New Measurement",
+                                style: Styles.headerNormal,
+                              ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                alignment: Alignment.bottomRight,
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Icon(
+                                  CupertinoIcons.xmark_circle_fill,
+                                  size: 27,
+                                  color: Styles.iconColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Column(),
-                    ),
-                  ],
+                      Flexible(
+                        flex: 30,
+                        child: LandingInputWidget(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Flexible(

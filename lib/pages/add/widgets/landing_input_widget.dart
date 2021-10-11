@@ -19,18 +19,21 @@ class LandingInputWidget extends StatelessWidget {
     return Column(
       children: [
         Flexible(
-          flex: 17,
+          flex: 20,
           child: Consumer(
             builder: (BuildContext context,
                 T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {
               final isSecondStage = watch(inputStageProvider);
-              return isSecondStage ? BottomInputWidget() : TopInputWidget();
+              return isSecondStage ? const BottomInputWidget() : TopInputWidget();
             },
           ),
         ),
         Flexible(
           flex: 2,
-          child: ButtonWidget(),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: ButtonWidget(),
+          ),
         ),
       ],
     );

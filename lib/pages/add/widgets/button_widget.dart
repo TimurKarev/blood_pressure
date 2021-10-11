@@ -17,34 +17,22 @@ class ButtonWidget extends ConsumerWidget {
     final enable = watch(enableProvider);
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Flexible(
-          flex: 1,
-          child: Container(),
-        ),
-        Flexible(
-          flex: 18,
-          child: SizedBox(
-            width: double.infinity,
-            child: CupertinoButton(
-              padding: EdgeInsets.zero,
-              color: Styles.buttonColor,
-              disabledColor: Styles.buttonDisableColor,
-              child: Text(
-                context.read(addPageViewModelProvider).buttonText,
-                style: Styles.base,
-              ),
-              onPressed: enable ? () {
-                context.read(addPageViewModelProvider).buttonPressed();
-              } : null,
+        Expanded(
+          child: CupertinoButton(
+            padding: EdgeInsets.zero,
+            color: Styles.buttonColor,
+            disabledColor: Styles.buttonDisableColor,
+            child: Text(
+              context.read(addPageViewModelProvider).buttonText,
+              style: Styles.base,
             ),
+            onPressed: enable ? () {
+              context.read(addPageViewModelProvider).buttonPressed();
+            } : null,
           ),
-        ),
-        Flexible(
-          flex: 1,
-          child: Container(),
         ),
       ],
     );

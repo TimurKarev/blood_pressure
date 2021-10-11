@@ -14,67 +14,62 @@ class PillsWidget extends StatefulWidget {
 }
 
 class _PillsWidgetState extends State<PillsWidget> {
-  List<bool> _statusList = [false, false, false];
+  List<bool> _statusList = [false, false];
+  bool _textFieldEnable = false;
 
   void onTap(int index) {
     setState(() {
-      _statusList = [false, false, false];
+      _statusList = [false, false];
       _statusList[index] = true;
+      if (index == 0) {
+        _textFieldEnable = false;
+      } else {
+        _textFieldEnable = true;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      //mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
-          flex: 10,
-          child: TextIconWidget(
-            isActive: _statusList[0],
-            text: "Good",
-            iconAssetPath: "assets/png/good_grey.png",
-            activeColor: Styles.badgeGoodColor,
-            onTap: () {
-              context.read(addPageViewModelProvider).feelChoiceChanged(0);
-              onTap(0);
-            },
+          flex:1,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                flex: 10,
+                child: TextIconWidget(
+                  isActive: _statusList[0],
+                  text: "No",
+                  activeColor: CupertinoColors.black,
+                  onTap: () {
+                    onTap(0);
+                  },
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(),
+              ),
+              Flexible(
+                flex: 10,
+                child: TextIconWidget(
+                  isActive: _statusList[1],
+                  text: "Yes",
+                  activeColor: CupertinoColors.black,
+                  onTap: () {
+                    onTap(1);
+                  },
+                ),
+              ),
+            ],
           ),
         ),
-        Flexible(
-          flex: 1,
-          child: Container(),
-        ),
-        Flexible(
-          flex: 10,
-          child: TextIconWidget(
-            isActive: _statusList[1],
-            text: "Normal",
-            iconAssetPath: "assets/png/normal_grey.png",
-            activeColor: Styles.badgeNormalColor,
-            onTap: () {
-              context.read(addPageViewModelProvider).feelChoiceChanged(1);
-              onTap(1);
-            },
-          ),
-        ),
-        Flexible(
-          flex: 1,
-          child: Container(),
-        ),
-        Flexible(
-          flex: 10,
-          child: TextIconWidget(
-            isActive: _statusList[2],
-            text: "Bad",
-            iconAssetPath: "assets/png/bad_grey.png",
-            activeColor: Styles.badgeBadColor,
-            onTap: () {
-              context.read(addPageViewModelProvider).feelChoiceChanged(2);
-              onTap(2);
-            },
-          ),
-        ),
+        const SizedBox(height: 5.0),
+        const Flexible(flex:1,child: CupertinoTextField()),
       ],
     );
   }
