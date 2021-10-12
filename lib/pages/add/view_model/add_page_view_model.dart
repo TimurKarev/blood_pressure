@@ -1,13 +1,16 @@
+import 'package:blood_pressure/model/measurement.dart';
+import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 //TODO: Name refactoring
 
-final addPageViewModelProvider =
-    ChangeNotifierProvider<AddPageViewModel>((ref) => AddPageViewModel());
+final addPageViewModelProvider = ChangeNotifierProvider<AddPageViewModel>(
+    (ref) => AddPageViewModel(ref.read));
 
 class AddPageViewModel extends ChangeNotifier {
+  final Reader reader;
 
   bool enableButton = false;
   String buttonText = 'Continue';
@@ -21,10 +24,11 @@ class AddPageViewModel extends ChangeNotifier {
   String pills = '';
   bool? _takePills;
 
-
   int? _sys;
   int? _dia;
   int? _pulse;
+
+  AddPageViewModel(this.reader);
 
   init() {
     enableButton = false;
@@ -70,22 +74,30 @@ class AddPageViewModel extends ChangeNotifier {
 
   set takePills(bool value) {
     _takePills = value;
-    if (_takePills==false) {
+    if (_takePills == false) {
       pills = '';
     }
     _checkSecondStateAndNotify();
   }
 
-  buttonPressed() {
+  bool buttonPressed() {
     if (secondPartEdit == false) {
       _buttonFirstPressed();
+      return false;
     } else {
       _buttonSecondPressed();
+      return true;
     }
   }
 
   void _buttonSecondPressed() {
-
+    reader(viewModelProvider).addMeasurement(Measurement(
+        sys: _sys!,
+        dia: dia!,
+        pulse: pulse!,
+        pills: pills,
+        diagnosis: bageText,
+        time: dateTime));
   }
 
   void _buttonFirstPressed() {
@@ -116,13 +128,13 @@ class AddPageViewModel extends ChangeNotifier {
     }
   }
 
-  void pillsTextChanged(String newVal){
+  void pillsTextChanged(String newVal) {
     pills = newVal;
     _checkSecondStateAndNotify();
   }
 
   void feelChoiceChanged(int choice) {
-    switch (choice){
+    switch (choice) {
       case 0:
         feelChoice = "Good";
         break;
@@ -133,19 +145,19 @@ class AddPageViewModel extends ChangeNotifier {
         feelChoice = "Bad";
         break;
     }
-    if (bottomInputStart==false) {
+    if (bottomInputStart == false) {
       bottomInputStart = true;
       //notifyListeners();
     }
     _checkSecondStateAndNotify();
   }
 
-  _checkSecondStateAndNotify(){
+  _checkSecondStateAndNotify() {
     final bool prevValue = enableButton;
     enableButton = false;
-    if (_takePills!=null) {
-      if (feelChoice!= ""){
-        if (_takePills==true && pills.isNotEmpty || _takePills==false){
+    if (_takePills != null) {
+      if (feelChoice != "") {
+        if (_takePills == true && pills.isNotEmpty || _takePills == false) {
           enableButton = true;
         }
       }
@@ -170,5 +182,4 @@ class AddPageViewModel extends ChangeNotifier {
       return false;
     }
   }
-
 }

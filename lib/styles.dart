@@ -101,4 +101,6 @@ abstract class Styles {
 
   static const Color badgeGoodColor = Color(0xff8CCD4A);
 
+  static const Color emptyPageColor = Color(0xff9681D0);
+
 }

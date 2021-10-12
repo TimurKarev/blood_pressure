@@ -9,8 +9,8 @@ class ButtonWidget extends ConsumerWidget {
     Key? key,
   }) : super(key: key);
 
-  final enableProvider = Provider<bool>(
-      (ref) => ref.watch(addPageViewModelProvider).enableButton);
+  final enableProvider =
+      Provider<bool>((ref) => ref.watch(addPageViewModelProvider).enableButton);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -29,9 +29,15 @@ class ButtonWidget extends ConsumerWidget {
             context.read(addPageViewModelProvider).buttonText,
             style: Styles.base,
           ),
-          onPressed: enable ? () {
-            context.read(addPageViewModelProvider).buttonPressed();
-          } : null,
+          onPressed: enable
+              ? () {
+                  final result =
+                      context.read(addPageViewModelProvider).buttonPressed();
+                  if (result == true) {
+                    Navigator.pop(context);
+                  }
+                }
+              : null,
         ),
       ),
     );
