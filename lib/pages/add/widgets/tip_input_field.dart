@@ -37,6 +37,7 @@ class InputField extends StatelessWidget {
       },
       child: SizedBox(
         width: width,
+        height: 40.0,
         child: CupertinoTextField(
           keyboardType: TextInputType.number,
           padding: const EdgeInsets.fromLTRB(5.0, 1.0, 1.0, 1.0),

@@ -17,54 +17,21 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(bottom: 10.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text("Status:", style: Styles.headerNormal),
-          ),
+        const Text("Status:", style: Styles.headerNormal),
+        const TopInputCard(),
+        const Text("Time:", style: Styles.headerNormal),
+        TimeWidget(),
+        const Text("How do you feel?:", style: Styles.headerNormal),
+        const FeelWidget(),
+        const Text(
+          "Have you taken any pills?:",
+          style: Styles.headerNormal,
         ),
-        const Flexible(
-          flex: 3,
-          child: TopInputCard(),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 15.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text("Time:", style: Styles.headerNormal),
-          ),
-        ),
-        Flexible(
-          flex: 1,
-          child: TimeWidget(),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 10.0, bottom:10.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text("How do you feel?:", style: Styles.headerNormal),
-          ),
-        ),
-        const Flexible(
-          flex: 1,
-          child: FeelWidget(),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Have you taken any pills?:",
-              style: Styles.headerNormal,
-            ),
-          ),
-        ),
-        const Flexible(
-          flex: 2,
-          child: PillsWidget(),
-        ),
+        const PillsWidget(),
       ],
     );
   }

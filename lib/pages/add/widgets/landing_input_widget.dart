@@ -2,6 +2,7 @@ import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
 import 'package:blood_pressure/pages/add/widgets/bottom_widget.dart';
 import 'package:blood_pressure/pages/add/widgets/button_widget.dart';
 import 'package:blood_pressure/pages/add/widgets/input_widget.dart';
+import 'package:blood_pressure/pages/utils/fake.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,8 +19,7 @@ class LandingInputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Flexible(
-          flex: 23,
+        Expanded(
           child: Consumer(
             builder: (BuildContext context,
                 T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {
@@ -28,12 +28,9 @@ class LandingInputWidget extends StatelessWidget {
             },
           ),
         ),
-        Flexible(
-          flex: 2,
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: ButtonWidget(),
-          ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: ButtonWidget(),
         ),
       ],
     );

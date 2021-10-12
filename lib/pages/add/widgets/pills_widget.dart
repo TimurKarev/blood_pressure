@@ -3,7 +3,6 @@ import 'package:blood_pressure/pages/add/widgets/text_icon_widget.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 
 class PillsWidget extends StatefulWidget {
@@ -16,6 +15,7 @@ class PillsWidget extends StatefulWidget {
 class _PillsWidgetState extends State<PillsWidget> {
   List<bool> _statusList = [false, false];
   bool _textFieldEnable = false;
+  final _controller = TextEditingController(text: "");
 
   void onTap(int index) {
     setState(() {
@@ -23,8 +23,9 @@ class _PillsWidgetState extends State<PillsWidget> {
       _statusList[index] = true;
       if (index == 0) {
         _textFieldEnable = false;
+          _controller.text = '';
       } else {
-        _textFieldEnable = true;
+          _textFieldEnable = true;
       }
     });
   }
@@ -32,10 +33,10 @@ class _PillsWidgetState extends State<PillsWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      //mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Flexible(
-          flex: 1,
+        SizedBox(
+          height: 45.0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -47,6 +48,7 @@ class _PillsWidgetState extends State<PillsWidget> {
                   activeColor: CupertinoColors.black,
                   onTap: () {
                     onTap(0);
+                    context.read(addPageViewModelProvider).takePills = false;
                   },
                 ),
               ),
@@ -62,22 +64,31 @@ class _PillsWidgetState extends State<PillsWidget> {
                   activeColor: CupertinoColors.black,
                   onTap: () {
                     onTap(1);
+                    context.read(addPageViewModelProvider).takePills = true;
                   },
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 5.0),
-        Padding(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-          child: SizedBox(
-            height: 40.0,
-            child: CupertinoTextField(
-              scrollPadding: EdgeInsets,
-              enabled: _textFieldEnable,
-              placeholder: "Name of Pills",
+        const SizedBox(height: 10.0),
+        SizedBox(
+          height: 40.0,
+          child: CupertinoTextField(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
+            enabled: _textFieldEnable,
+            placeholder: "Name of Pills",
+            style: Styles.textInputText,
+            cursorColor: CupertinoColors.black,
+            controller: _controller,
+            onChanged: (_) {
+              context
+                  .read(addPageViewModelProvider)
+                  .pillsTextChanged(_controller.text);
+            },
+            //placeholderStyle: ,
           ),
         ),
       ],

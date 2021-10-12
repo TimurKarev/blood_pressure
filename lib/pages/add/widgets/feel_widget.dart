@@ -25,57 +25,61 @@ class _FeelWidgetState extends State<FeelWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Flexible(
-          flex: 10,
-          child: TextIconWidget(
-            isActive: _statusList[0],
-            text: "Good",
-            iconAssetPath: "assets/png/good_grey.png",
-            activeColor: Styles.badgeGoodColor,
-            onTap: () {
-              context.read(addPageViewModelProvider).feelChoiceChanged(0);
-              onTap(0);
-            },
+    return SizedBox(
+      width: double.infinity,
+      height: 45,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            flex: 10,
+            child: TextIconWidget(
+              isActive: _statusList[0],
+              text: "Good",
+              iconAssetPath: "assets/png/good_grey.png",
+              activeColor: Styles.badgeGoodColor,
+              onTap: () {
+                context.read(addPageViewModelProvider).feelChoiceChanged(0);
+                onTap(0);
+              },
+            ),
           ),
-        ),
-        Flexible(
-          flex: 1,
-          child: Container(),
-        ),
-        Flexible(
-          flex: 10,
-          child: TextIconWidget(
-            isActive: _statusList[1],
-            text: "Normal",
-            iconAssetPath: "assets/png/normal_grey.png",
-            activeColor: Styles.badgeNormalColor,
-            onTap: () {
-              context.read(addPageViewModelProvider).feelChoiceChanged(1);
-              onTap(1);
-            },
+          Flexible(
+            flex: 1,
+            child: Container(),
           ),
-        ),
-        Flexible(
-          flex: 1,
-          child: Container(),
-        ),
-        Flexible(
-          flex: 10,
-          child: TextIconWidget(
-            isActive: _statusList[2],
-            text: "Bad",
-            iconAssetPath: "assets/png/bad_grey.png",
-            activeColor: Styles.badgeBadColor,
-            onTap: () {
-              context.read(addPageViewModelProvider).feelChoiceChanged(2);
-              onTap(2);
-            },
+          Flexible(
+            flex: 10,
+            child: TextIconWidget(
+              isActive: _statusList[1],
+              text: "Normal",
+              iconAssetPath: "assets/png/normal_grey.png",
+              activeColor: Styles.badgeNormalColor,
+              onTap: () {
+                context.read(addPageViewModelProvider).feelChoiceChanged(1);
+                onTap(1);
+              },
+            ),
           ),
-        ),
-      ],
+          Flexible(
+            flex: 1,
+            child: Container(),
+          ),
+          Flexible(
+            flex: 10,
+            child: TextIconWidget(
+              isActive: _statusList[2],
+              text: "Bad",
+              iconAssetPath: "assets/png/bad_grey.png",
+              activeColor: Styles.badgeBadColor,
+              onTap: () {
+                context.read(addPageViewModelProvider).feelChoiceChanged(2);
+                onTap(2);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

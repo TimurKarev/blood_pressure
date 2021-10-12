@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+//TODO: Name refactoring
+
 final addPageViewModelProvider =
     ChangeNotifierProvider<AddPageViewModel>((ref) => AddPageViewModel());
 
@@ -16,6 +18,9 @@ class AddPageViewModel extends ChangeNotifier {
   DateTime dateTime = DateTime.now();
 
   String feelChoice = "";
+  String pills = '';
+  bool? _takePills;
+
 
   int? _sys;
   int? _dia;
@@ -29,6 +34,10 @@ class AddPageViewModel extends ChangeNotifier {
     dateTime = DateTime.now();
     bottomInputStart = false;
 
+    feelChoice = "";
+    pills = '';
+    _takePills = null;
+
     _sys = null;
     _dia = null;
     _pulse = null;
@@ -36,21 +45,21 @@ class AddPageViewModel extends ChangeNotifier {
 
   set sys(int? value) {
     _sys = value;
-    _updateStates();
+    _updateFirstStates();
   }
 
   int? get sys => _sys;
 
   set dia(int? value) {
     _dia = value;
-    _updateStates();
+    _updateFirstStates();
   }
 
   int? get dia => _dia;
 
   set pulse(int? value) {
     _pulse = value;
-    _updateStates();
+    _updateFirstStates();
   }
 
   int? get pulse => _pulse;
@@ -59,8 +68,28 @@ class AddPageViewModel extends ChangeNotifier {
 
   String get time => DateFormat('hh:mm').format(dateTime);
 
-  void buttonPressed() {
-    if (_checkTopState()) {
+  set takePills(bool value) {
+    _takePills = value;
+    if (_takePills==false) {
+      pills = '';
+    }
+    _checkSecondStateAndNotify();
+  }
+
+  buttonPressed() {
+    if (secondPartEdit == false) {
+      _buttonFirstPressed();
+    } else {
+      _buttonSecondPressed();
+    }
+  }
+
+  void _buttonSecondPressed() {
+
+  }
+
+  void _buttonFirstPressed() {
+    if (_checkFirstState()) {
       enableButton = false;
       buttonText = "Add measurement";
       secondPartEdit = true;
@@ -83,8 +112,13 @@ class AddPageViewModel extends ChangeNotifier {
       notifyListeners();
     } else {
       enableButton = false;
-      _updateStates();
+      _updateFirstStates();
     }
+  }
+
+  void pillsTextChanged(String newVal){
+    pills = newVal;
+    _checkSecondStateAndNotify();
   }
 
   void feelChoiceChanged(int choice) {
@@ -101,24 +135,40 @@ class AddPageViewModel extends ChangeNotifier {
     }
     if (bottomInputStart==false) {
       bottomInputStart = true;
-      notifyListeners();
+      //notifyListeners();
     }
-
+    _checkSecondStateAndNotify();
   }
 
-  _updateStates() {
+  _checkSecondStateAndNotify(){
     final bool prevValue = enableButton;
-    enableButton = _checkTopState();
+    enableButton = false;
+    if (_takePills!=null) {
+      if (feelChoice!= ""){
+        if (_takePills==true && pills.isNotEmpty || _takePills==false){
+          enableButton = true;
+        }
+      }
+    }
     if (prevValue != enableButton) {
       notifyListeners();
     }
   }
 
-  bool _checkTopState() {
+  _updateFirstStates() {
+    final bool prevValue = enableButton;
+    enableButton = _checkFirstState();
+    if (prevValue != enableButton) {
+      notifyListeners();
+    }
+  }
+
+  bool _checkFirstState() {
     if (_sys != null && _dia != null && _pulse != null) {
       return true;
     } else {
       return false;
     }
   }
+
 }
