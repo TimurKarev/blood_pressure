@@ -11,6 +11,6 @@ class LastMeasureCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     Measurement? measurement = watch(viewModelProvider).lastMeasurement;
-    return measurement != null ? InfoCard(measurement) : const EmptyCard();
+    return measurement != null ? InfoCard(measurement, isHistory:false) : const EmptyCard();
   }
 }

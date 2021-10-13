@@ -1,4 +1,5 @@
 import 'package:blood_pressure/model/measurement.dart';
+import 'package:blood_pressure/pages/common_widgets/measurement_row.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class InfoCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "$date, $time",
@@ -34,8 +36,13 @@ class InfoCard extends StatelessWidget {
                       : CupertinoColors.black,
                 ),
               ),
-              Text(
-                  "${measurement.sys} / ${measurement.dia}    ${measurement.pulse}"),
+              MeasurementRow(
+                sys: measurement.sys.toString(),
+                dia: measurement.dia.toString(),
+                pulse: measurement.pulse.toString(),
+                badgeText: measurement.diagnosis,
+                type: CardType.main,
+              ),
               Text("Pills: ${measurement.pills}"),
             ],
           ),
