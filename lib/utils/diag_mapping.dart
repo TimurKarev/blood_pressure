@@ -1,7 +1,9 @@
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 
-const Map<String, Color> diagMap = {
+//TODO: Need Refactor and null check
+
+const Map<String, Color> _diagnosesToColorMap = {
   "Low blood pressure": Styles.lowBloodPressureColor,
   "Normal": Styles.normalPressureColor,
   "Prehypertension": Styles.prehypertensionColor,
@@ -10,4 +12,5 @@ const Map<String, Color> diagMap = {
   "Seek Emergency Care": Styles.seekEmergencyCareColor,
 };
 
-Color getColorFromDiag(String diag) => diagMap[diag] ?? Styles.primaryColor;
+Color getColorFromDiag(String diag) =>
+    _diagnosesToColorMap[diag] ?? Styles.primaryColor;

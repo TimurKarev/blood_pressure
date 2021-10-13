@@ -91,13 +91,17 @@ class AddPageViewModel extends ChangeNotifier {
   }
 
   void _buttonSecondPressed() {
-    reader(viewModelProvider).addMeasurement(Measurement(
+    reader(viewModelProvider).addMeasurement(
+      Measurement(
         sys: _sys!,
         dia: dia!,
         pulse: pulse!,
         pills: pills,
         diagnosis: bageText,
-        time: dateTime));
+        time: dateTime,
+        feel: feelChoice,
+      ),
+    );
   }
 
   void _buttonFirstPressed() {

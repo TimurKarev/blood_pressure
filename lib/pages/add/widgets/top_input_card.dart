@@ -1,7 +1,7 @@
 import 'package:blood_pressure/pages/add/view_model/add_page_view_model.dart';
 import 'package:blood_pressure/pages/common_widgets/measurement_row.dart';
 import 'package:blood_pressure/styles.dart';
-import 'package:blood_pressure/utils/color_to_diag_mapping.dart';
+import 'package:blood_pressure/utils/diag_mapping.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/src/provider.dart';
@@ -30,6 +30,7 @@ class TopInputCard extends StatelessWidget {
             pulse: viewModel.pulse.toString(),
             badgeText: viewModel.bageText,
             type: CardType.input,
+            feel: "",
           ),
         ),
       ),

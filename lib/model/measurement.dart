@@ -6,16 +6,18 @@ class Measurement {
   int pulse;
   String pills;
   String diagnosis;
+  String feel;
   DateTime time;
 
   factory Measurement.random({DateTime? dateTime}) {
     dateTime ??= DateTime.now();
     Random rnd = Random(dateTime.microsecondsSinceEpoch);
     return Measurement(
-        sys: 60 + rnd.nextInt(220-90),
-        dia: 58 + rnd.nextInt(120-58),
-        pulse: 50 + rnd.nextInt(70-50),
+        sys: 60 + rnd.nextInt(220 - 90),
+        dia: 58 + rnd.nextInt(120 - 58),
+        pulse: 50 + rnd.nextInt(70 - 50),
         pills: "None",
+        feel: "Good",
         diagnosis: "Something",
         time: dateTime);
   }
@@ -28,20 +30,22 @@ class Measurement {
     required this.pulse,
     required this.pills,
     required this.diagnosis,
+    required this.feel,
     required this.time,
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          (other is Measurement &&
-              runtimeType == other.runtimeType &&
-              sys == other.sys &&
-              dia == other.dia &&
-              pulse == other.pulse &&
-              pills == other.pills &&
-              diagnosis == other.diagnosis &&
-              time == other.time);
+      (other is Measurement &&
+          runtimeType == other.runtimeType &&
+          sys == other.sys &&
+          dia == other.dia &&
+          pulse == other.pulse &&
+          pills == other.pills &&
+          diagnosis == other.diagnosis &&
+          feel == other.feel &&
+          time == other.time);
 
   @override
   int get hashCode =>
@@ -50,6 +54,7 @@ class Measurement {
       pulse.hashCode ^
       pills.hashCode ^
       diagnosis.hashCode ^
+      feel.hashCode ^
       time.hashCode;
 
   @override
@@ -60,6 +65,7 @@ class Measurement {
         ' pulse: $pulse,' +
         ' pills: $pills,' +
         ' diagnosis: $diagnosis,' +
+        ' feel: $feel,' +
         ' time: $time,' +
         '}';
   }
@@ -70,6 +76,7 @@ class Measurement {
     int? pulse,
     String? pills,
     String? diagnosis,
+    String? feel,
     DateTime? time,
   }) {
     return Measurement(
@@ -78,6 +85,7 @@ class Measurement {
       pulse: pulse ?? this.pulse,
       pills: pills ?? this.pills,
       diagnosis: diagnosis ?? this.diagnosis,
+      feel: feel ?? this.feel,
       time: time ?? this.time,
     );
   }
@@ -89,6 +97,7 @@ class Measurement {
       'pulse': this.pulse,
       'pills': this.pills,
       'diagnosis': this.diagnosis,
+      'feel': this.feel,
       'time': this.time.microsecondsSinceEpoch,
     };
   }
@@ -102,6 +111,7 @@ class Measurement {
       pulse: map['pulse'] as int,
       pills: map['pills'] as String,
       diagnosis: map['diagnosis'] as String,
+      feel: map['feel'] as String,
       time: timeDate,
     );
   }

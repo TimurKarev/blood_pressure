@@ -64,6 +64,7 @@ flutter:
     - assets/svg/hand.svg
     - assets/png/heart.png
     - assets/png/heart_pulse.png
+
     - assets/png/bad_color.png
     - assets/png/bad_grey.png
     - assets/png/normal_color.png

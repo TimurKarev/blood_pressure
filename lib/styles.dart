@@ -75,6 +75,8 @@ abstract class Styles {
 
   static const Color primaryColor = CupertinoColors.white;
 
+  static const Color backgroundColor = CupertinoColors.systemGrey6;
+
   static const Color iconColor = CupertinoColors.systemGrey3;
 
   static const Color cursorColor = CupertinoColors.black;

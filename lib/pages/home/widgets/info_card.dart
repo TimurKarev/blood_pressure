@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+
+//TODO: Merge with MeasurementRow
 class InfoCard extends StatelessWidget {
   final Measurement measurement;
   final bool isHistory;
@@ -20,6 +22,9 @@ class InfoCard extends StatelessWidget {
     final time = timeFormatter.format(measurement.time);
     return Card(
       color: CupertinoColors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: SizedBox(
         width: double.infinity,
         height: isHistory ? 193 : 250.0,
@@ -27,6 +32,7 @@ class InfoCard extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "$date, $time",
@@ -41,9 +47,10 @@ class InfoCard extends StatelessWidget {
                 dia: measurement.dia.toString(),
                 pulse: measurement.pulse.toString(),
                 badgeText: measurement.diagnosis,
-                type: CardType.main,
+                feel: measurement.feel,
+                type: isHistory?CardType.history : CardType.main,
               ),
-              Text("Pills: ${measurement.pills}"),
+              Text("Pills: ${measurement.pills}", style: Styles.base),
             ],
           ),
         ),
