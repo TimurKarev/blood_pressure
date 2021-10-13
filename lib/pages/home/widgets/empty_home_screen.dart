@@ -1,4 +1,5 @@
 import 'package:blood_pressure/pages/home/widgets/empty_card.dart';
+import 'package:blood_pressure/pages/utils/top_angles_clipper.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +17,21 @@ class EmptyHomeScreen extends StatelessWidget {
             Column(
               children: [
                 Flexible(
-                  flex: 2,
+                  flex: 1,
                   fit: FlexFit.tight,
                   child: Center(
-                    child: Text(
-                      "Home",
-                      style: Styles.headerNormal
-                          .copyWith(color: CupertinoColors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 30.0),
+                      child: Text(
+                        "Home",
+                        style: Styles.headerNormal
+                            .copyWith(color: CupertinoColors.white),
+                      ),
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 15.0,
                 ),
                 const Flexible(
                   flex: 3,
@@ -47,8 +54,8 @@ class EmptyHomeScreen extends StatelessWidget {
               initialChildSize: 0.5,
               minChildSize: 0.5,
               maxChildSize: 1,
-              builder: (context, controller) => ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+              builder: (context, controller) => ClipPath(
+                clipper: TopAnglesClipper(radius: 20.0),
                 child: Container(
                   color: CupertinoColors.white,
                   child: Padding(
