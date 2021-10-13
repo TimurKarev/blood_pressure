@@ -8,8 +8,8 @@ import 'package:flutter_riverpod/src/provider.dart';
 //TODO: Refactor ME
 
 class TopInputCard extends StatelessWidget {
-
   static const _bageHeight = 45.0;
+
   const TopInputCard({Key? key}) : super(key: key);
 
   @override
@@ -29,27 +29,7 @@ class TopInputCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            viewModel.sys.toString(),
-                            style: Styles.topInputCardText,
-                          ),
-                          const Text(
-                            " / ",
-                            style: Styles.topInputCardTextGrey,
-                          ),
-                          Text(
-                            viewModel.dia.toString(),
-                            style: Styles.topInputCardText,
-                          ),
-                        ],
-                      ),
-                      const Text("SYS/DIA", style: Styles.smallTopCardTextGrey),
-                    ],
-                  ),
+                  const MeasurementRow(),
                   Flexible(
                     flex: 1,
                     child: Container(),
@@ -76,7 +56,8 @@ class TopInputCard extends StatelessWidget {
                               viewModel.pulse.toString(),
                               style: Styles.topInputCardText,
                             ),
-                            const Text("BMP", style: Styles.smallTopCardTextGrey),
+                            const Text("BMP",
+                                style: Styles.smallTopCardTextGrey),
                           ],
                         ),
                       ],
@@ -97,19 +78,22 @@ class TopInputCard extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: getColorFromDiag(viewModel.bageText),
                               borderRadius:
-                              const BorderRadius.all(Radius.circular(10))),
+                                  const BorderRadius.all(Radius.circular(10))),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset("assets/png/heart_pulse.png"),
-                              Text("  ${viewModel.bageText}", style: Styles.inputBageText),
+                              Text("  ${viewModel.bageText}",
+                                  style: Styles.inputBageText),
                             ],
                           ),
                         ),
                       ),
                       Flexible(
                         flex: 1,
-                        child: Container(height: _bageHeight,),
+                        child: Container(
+                          height: _bageHeight,
+                        ),
                       ),
                     ],
                   ),
@@ -119,6 +103,35 @@ class TopInputCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class MeasurementRow extends StatelessWidget {
+  const MeasurementRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(
+              viewModel.sys.toString(),
+              style: Styles.topInputCardText,
+            ),
+            const Text(
+              " / ",
+              style: Styles.topInputCardTextGrey,
+            ),
+            Text(
+              viewModel.dia.toString(),
+              style: Styles.topInputCardText,
+            ),
+          ],
+        ),
+        const Text("SYS/DIA", style: Styles.smallTopCardTextGrey),
+      ],
     );
   }
 }

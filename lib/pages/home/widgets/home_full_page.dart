@@ -1,11 +1,14 @@
+import 'package:blood_pressure/model/measurement.dart';
 import 'package:blood_pressure/pages/add/add_page.dart';
+import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:blood_pressure/pages/home/widgets/bottom_button.dart';
 import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/last_measure_card.dart';
+import 'package:blood_pressure/utils/color_to_diag_mapping.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 enum ButtonButtonEnum {
   statistic,
@@ -39,13 +42,28 @@ class HomeFullPage extends StatelessWidget {
     return CupertinoPageScaffold(
       child: Stack(
         children: [
+          Consumer(
+            builder: (BuildContext context,
+                T Function<T>(ProviderBase<Object?, T>) watch, Widget? child) {
+              Measurement? measurement =
+                  watch(viewModelProvider).lastMeasurement;
+              return Container(
+                color: measurement == null
+                    ? Styles.emptyPageColor
+                    : getColorFromDiag(measurement.diagnosis),
+              );
+            },
+          ),
           Column(
             children: [
               const Flexible(
                 flex: 2,
                 fit: FlexFit.tight,
                 child: Center(
-                  child: Text("Home", style: Styles.headerNormal,),
+                  child: Text(
+                    "Home",
+                    style: Styles.headerNormal,
+                  ),
                 ),
               ),
               const Flexible(
