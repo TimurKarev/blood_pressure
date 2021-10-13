@@ -18,9 +18,10 @@ class EmptyCard extends StatelessWidget {
       ),
       color: Colors.white,
       child: Column(
+
         children: [
-          Flexible(
-            flex: 7,
+          Expanded(
+            //flex: 7,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -30,7 +31,7 @@ class EmptyCard extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            height: 48.0,
+            height: 60.0,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: CupertinoButton(
