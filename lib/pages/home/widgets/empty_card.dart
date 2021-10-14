@@ -1,10 +1,7 @@
-import 'package:blood_pressure/model/measurement.dart';
 import 'package:blood_pressure/pages/add/add_page.dart';
-import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class EmptyCard extends StatelessWidget {

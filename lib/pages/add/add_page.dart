@@ -14,11 +14,11 @@ class AddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read(addPageViewModelProvider).init();
-    return CupertinoPageScaffold(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
-        child: ClipPath(
-          clipper: TopAnglesClipper(radius: 30.0),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+      child: ClipPath(
+        clipper: TopAnglesClipper(radius: 30.0),
+        child: CupertinoPageScaffold(
           child: Container(
             color: Styles.primaryColor,
             child: Row(
@@ -35,37 +35,40 @@ class AddPage extends StatelessWidget {
                       children: [
                         Flexible(
                           flex: 3,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Flexible(
-                                flex: 1,
-                                child: Container(),
-                              ),
-                              const Flexible(
-                                flex: 8,
-                                child: Text(
-                                  "New Measurement",
-                                  style: Styles.headerNormal,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(),
                                 ),
-                              ),
-                              Flexible(
-                                flex: 1,
-                                child: CupertinoButton(
-                                  padding: EdgeInsets.zero,
-                                  alignment: Alignment.bottomRight,
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Icon(
-                                    CupertinoIcons.xmark_circle_fill,
-                                    size: 27,
-                                    color: Styles.iconColor,
+                                const Flexible(
+                                  flex: 8,
+                                  child: Text(
+                                    "New Measurement",
+                                    style: Styles.headerNormal,
                                   ),
                                 ),
-                              ),
-                            ],
+                                Flexible(
+                                  flex: 1,
+                                  child: CupertinoButton(
+                                    padding: EdgeInsets.zero,
+                                    alignment: Alignment.bottomRight,
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Icon(
+                                      CupertinoIcons.xmark_circle_fill,
+                                      size: 27,
+                                      color: Styles.iconColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Flexible(
