@@ -18,7 +18,7 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height - 190.0,
         child: Column(
           //mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

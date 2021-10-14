@@ -1,5 +1,3 @@
-import 'package:blood_pressure/pages/home/home_page_landing.dart';
-import 'package:blood_pressure/pages/home/widgets/empty_home_screen.dart';
 import 'package:blood_pressure/pages/home/widgets/home_full_page.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
