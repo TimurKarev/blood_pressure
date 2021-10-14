@@ -3,25 +3,20 @@ import 'package:blood_pressure/model/measurement.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final dbRepositoryProvider = ChangeNotifierProvider(
-    (ref) => MeasurementRepository(ref.read(daoProvider)));
+final dbRepositoryProvider =
+    Provider((ref) => MeasurementRepository(ref.read(daoProvider)));
 
-class MeasurementRepository extends ChangeNotifier {
+class MeasurementRepository {
   final MeasurementDao _measurementDao;
 
   MeasurementRepository(this._measurementDao);
 
-  Future<int> getHistoryLength() async {
-    return await _measurementDao.getTableLength();
-  }
+  // Future<int> getHistoryLength() async {
+  //   return await _measurementDao.getTableLength();
+  // }
 
-  Future<int> addMeasurement(Measurement measurement) async {
-    final result = await _measurementDao.addMeasurement(measurement.toMap());
-    if (result != 0) {
-      notifyListeners();
-    }
-    return result;
-  }
+  Future<int> addMeasurement(Measurement measurement) async =>
+      await _measurementDao.addMeasurement(measurement.toMap());
 
   Future<List<Measurement>> getAllMeasurements() async {
     final List<Map<String, dynamic>> rawData =

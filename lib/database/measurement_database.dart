@@ -13,7 +13,6 @@ final dbProvider = Provider<DatabaseProvider>((ref) {
 });
 
 class DatabaseProvider {
-
   final tableName = 'Measurement';
   Database? _database;
 
@@ -27,14 +26,13 @@ class DatabaseProvider {
   Future<void> open() async {
     var databasePath = await getDatabasesPath();
     //"ReactiveTodo.db is our database instance name
-    print(databasePath.toString());
     String path = join(databasePath, "Measurement.db");
     _database = await openDatabase(path,
         version: 1, onCreate: initDB, onUpgrade: onUpgrade);
   }
 
   close() async {
-    if (_database!= null) {
+    if (_database != null) {
       await _database!.close();
     }
   }
@@ -52,6 +50,7 @@ class DatabaseProvider {
         "pulse INTEGER, "
         "pills TEXT, "
         "time INTEGER, "
+        "feel TEXT,"
         "diagnosis TEXT "
         ");");
   }

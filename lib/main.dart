@@ -1,4 +1,5 @@
 import 'package:blood_pressure/pages/landing_page.dart';
+import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,6 +20,16 @@ class MyApp extends StatelessWidget {
     return const CupertinoApp(
       title: 'Flutter Demo',
       home: LandingPage(),
+      theme: CupertinoThemeData(
+        brightness: Brightness.light,
+        textTheme: CupertinoTextThemeData(
+          textStyle: TextStyle(
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w600,
+            color: CupertinoColors.black,
+          ),
+        ),
+      ),
     );
   }
 }
