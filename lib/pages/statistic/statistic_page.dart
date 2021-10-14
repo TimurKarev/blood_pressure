@@ -52,14 +52,14 @@ class StatisticPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 15.0),
+              const SizedBox(height: 15.0),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: RadioSetWidget(
                   labels: ["Day", "Week", "Month", "Year"],
                 ),
               ),
-              SizedBox(height: 15.0),
+              const SizedBox(height: 15.0),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: RadioSetWidget(
