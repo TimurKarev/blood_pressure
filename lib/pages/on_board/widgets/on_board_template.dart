@@ -59,6 +59,7 @@ class OnBoardTemplate extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                  //TODO: Fix landing logic HomeFullPage - is not the best solution
                       const HomeFullPage() ), (Route<dynamic> route) => false);
                 },
               ),
