@@ -22,6 +22,7 @@ class ButtonWidget extends ConsumerWidget {
         width: double.infinity,
         height: 45,
         child: CupertinoButton(
+
           padding: EdgeInsets.zero,
           color: Styles.buttonColor,
           disabledColor: Styles.buttonDisableColor,
