@@ -1,3 +1,5 @@
+import 'package:blood_pressure/pages/home/home_page_landing.dart';
+import 'package:blood_pressure/pages/home/widgets/empty_home_screen.dart';
 import 'package:blood_pressure/pages/home/widgets/home_full_page.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -57,7 +59,7 @@ class OnBoardTemplate extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                       const HomeFullPage() ), (Route<dynamic> route) => false);
+                      const HomeFullPage() ), (Route<dynamic> route) => false);
                 },
               ),
             ),
