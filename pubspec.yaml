@@ -72,6 +72,11 @@ flutter:
     - assets/png/good_color.png
     - assets/png/good_grey.png
     - assets/png/emblem.png
+
+    - assets/png/on_board/on_board_1.png
+    - assets/png/on_board/on_board_2.png
+    - assets/png/on_board/on_board_3.png
+    - assets/png/on_board/on_board_4.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
