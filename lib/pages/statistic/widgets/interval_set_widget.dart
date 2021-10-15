@@ -3,23 +3,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RadioSetWidget extends StatefulWidget {
-  const RadioSetWidget({Key? key, required this.labels}) : super(key: key);
+  const RadioSetWidget({
+    Key? key,
+    required this.labels,
+    required this.onPressed,
+  }) : super(key: key);
 
   final List<String> labels;
+  final Function(int index) onPressed;
+
   @override
   _RadioSetWidgetState createState() => _RadioSetWidgetState();
 }
 
 class _RadioSetWidgetState extends State<RadioSetWidget> {
-
   List<bool> _active = [];
 
   @override
   @mustCallSuper
   void initState() {
-    if (widget.labels.isNotEmpty){
+    if (widget.labels.isNotEmpty) {
       _active.add(true);
-      for (int i=1; i<widget.labels.length; i++ ){
+      for (int i = 1; i < widget.labels.length; i++) {
         _active.add(false);
       }
     }
@@ -52,7 +57,10 @@ class _RadioSetWidgetState extends State<RadioSetWidget> {
               child: BadgeWidget(
                 text: widget.labels[i],
                 active: _active[i],
-                onTap: () => onTap(i),
+                onTap: () {
+                  onTap(i);
+                  widget.onPressed(i);
+                },
               ),
             ),
         ],

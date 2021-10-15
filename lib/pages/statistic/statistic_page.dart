@@ -1,8 +1,11 @@
+import 'package:blood_pressure/pages/statistic/view_model/statictic_view_model.dart';
+import 'package:blood_pressure/pages/statistic/widgets/chart_widget.dart';
 import 'package:blood_pressure/pages/statistic/widgets/interval_set_widget.dart';
 import 'package:blood_pressure/pages/utils/top_angles_clipper.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/src/provider.dart';
 
 class StatisticPage extends StatelessWidget {
   const StatisticPage({Key? key}) : super(key: key);
@@ -53,18 +56,27 @@ class StatisticPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15.0),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: RadioSetWidget(
-                  labels: ["Day", "Week", "Month", "Year"],
+                  labels: const ["Day", "Week", "Month", "Year"],
+                  onPressed: (int index) {
+                    print(index);
+                  },
                 ),
               ),
               const SizedBox(height: 15.0),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: RadioSetWidget(
-                  labels: ["Blood Pressure", "Pulse"],
+                  labels: const ["Blood Pressure", "Pulse"],
+                  onPressed: (int index) {},
                 ),
+              ),
+              Expanded(
+                child: ChartWidget(
+                    historyDates:
+                        context.read(statisticViewModelProvider).dayPulse),
               ),
             ],
           ),

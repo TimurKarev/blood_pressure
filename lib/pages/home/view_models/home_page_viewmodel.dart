@@ -19,21 +19,22 @@ class HomePageViewModel extends ChangeNotifier {
   HomePageLandingState isEmptyState = HomePageLandingState.loading;
   List<Measurement> historyMeasurements = [];
   Measurement? lastMeasurement;
+  List<Measurement> allMeasurements = [];
 
   HomePageViewModel(this.repository) {
     update();
   }
 
   Future<void> update() async {
-    List<Measurement> allMeasurementsRev =
+    allMeasurements =
         await repository.getAllMeasurements();
-    if (allMeasurementsRev.isNotEmpty) {
+    if (allMeasurements.isNotEmpty) {
       isEmptyState = HomePageLandingState.notEmpty;
-      List<Measurement> allMeasurements =
-          List.from(allMeasurementsRev.reversed);
-      lastMeasurement = allMeasurements[0];
+      List<Measurement> allMeasurementsRev =
+          List.from(allMeasurements.reversed);
+      lastMeasurement = allMeasurementsRev[0];
       if (allMeasurements.length > 1) {
-        historyMeasurements = allMeasurements.sublist(1);
+        historyMeasurements = allMeasurementsRev.sublist(1);
       }
     } else {
       isEmptyState = HomePageLandingState.empty;
