@@ -1,8 +1,8 @@
-import 'package:blood_pressure/pages/statistic/widgets/badge_widget.dart';
 import 'package:blood_pressure/pages/statistic/widgets/interval_set_widget.dart';
 import 'package:blood_pressure/pages/utils/top_angles_clipper.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class StatisticPage extends StatelessWidget {
   const StatisticPage({Key? key}) : super(key: key);
@@ -13,8 +13,8 @@ class StatisticPage extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
       child: ClipPath(
         clipper: TopAnglesClipper(radius: 30.0),
-        child: CupertinoPageScaffold(
-          child: Column(
+        child: Scaffold(
+          body: Column(
             children: [
               //TODO: make separate widget
               Padding(

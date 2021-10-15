@@ -18,8 +18,8 @@ class AddPage extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
       child: ClipPath(
         clipper: TopAnglesClipper(radius: 30.0),
-        child: CupertinoPageScaffold(
-          child: Container(
+        child: Scaffold(
+          body: Container(
             color: Styles.primaryColor,
             child: Row(
               children: [
