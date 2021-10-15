@@ -70,13 +70,16 @@ class StatisticPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: RadioSetWidget(
                   labels: const ["Blood Pressure", "Pulse"],
-                  onPressed: (int index) {},
+                  onPressed: (int index) {
+                    context.read(statisticViewModelProvider).weekPulse;
+                  },
                 ),
               ),
               Expanded(
                 child: ChartWidget(
-                    historyDates:
-                        context.read(statisticViewModelProvider).dayPulse),
+                  historyDates:
+                      context.read(statisticViewModelProvider).weekPulse,
+                ),
               ),
             ],
           ),
