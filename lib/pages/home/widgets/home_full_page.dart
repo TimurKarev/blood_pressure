@@ -38,7 +38,7 @@ class HomeFullPage extends StatelessWidget {
             context: context,
             pageBuilder: (BuildContext ctx, Animation animation,
                 Animation secondAnimation) {
-              return const StatisticPage();
+              return StatisticPage();
             });
         break;
       case ButtonButtonEnum.settings:

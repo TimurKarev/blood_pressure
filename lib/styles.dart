@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 abstract class Styles {
   static const TextStyle base = TextStyle(
@@ -104,5 +105,9 @@ abstract class Styles {
   static const Color badgeGoodColor = Color(0xff8CCD4A);
 
   static const Color emptyPageColor = Color(0xff9681D0);
+
+  static final chartPressureColor = charts.MaterialPalette.purple.shadeDefault;
+
+  static final chartPulseColor = charts.MaterialPalette.red.shadeDefault;
 
 }

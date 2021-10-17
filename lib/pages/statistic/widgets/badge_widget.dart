@@ -8,11 +8,13 @@ class BadgeWidget extends StatelessWidget {
     this.active = false,
     required this.text,
     required this.onTap,
+    required this.activeColor,
   }) : super(key: key);
 
   final bool active;
   final String text;
   final Function() onTap;
+  final Color activeColor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +25,13 @@ class BadgeWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: active
               ? Border.all(
-                  color: Styles.buttonColor,
+                  color: activeColor
                 )
               : null,
           borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
-          color: active ? Styles.buttonColor : null,
+          color: active ? activeColor : null,
         ),
         child: Center(
           child: Text(

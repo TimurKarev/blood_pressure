@@ -1,4 +1,5 @@
 import 'package:blood_pressure/pages/statistic/widgets/badge_widget.dart';
+import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +9,13 @@ class RadioSetWidget extends StatefulWidget {
     required this.labels,
     required this.onPressed,
     required this.startIndex,
+    required this.colorIndex,
   }) : super(key: key);
 
   final List<String> labels;
   final Function(int index) onPressed;
   final int startIndex;
+  final int colorIndex;
 
   @override
   _RadioSetWidgetState createState() => _RadioSetWidgetState();
@@ -66,6 +69,7 @@ class _RadioSetWidgetState extends State<RadioSetWidget> {
           for (int i = 0; i < length; i++)
             Expanded(
               child: BadgeWidget(
+                activeColor: widget.colorIndex==0?Colors.purple.shade500 : Colors.red.shade500,
                 text: widget.labels[i],
                 active: _active[i],
                 onTap: () {

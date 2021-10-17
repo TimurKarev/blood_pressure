@@ -9,7 +9,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 
 class StatisticPage extends StatelessWidget {
-  const StatisticPage({Key? key}) : super(key: key);
+  StatisticPage({Key? key}) : super(key: key);
+
+  final pulsePressureProvider =
+      Provider((ref) => ref.watch(statisticViewModelProvider).measure);
 
   @override
   Widget build(BuildContext context) {
@@ -60,22 +63,38 @@ class StatisticPage extends StatelessWidget {
               const SizedBox(height: 15.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: RadioSetWidget(
-                  labels: const ["Day", "Week", "Month", "Year"],
-                  startIndex: viewModel.interval,
-                  onPressed: (int index) {
-                    viewModel.interval = index;
+                child: Consumer(
+                  builder: (BuildContext context,
+                      T Function<T>(ProviderBase<Object?, T>) watch,
+                      Widget? child) {
+                    int index = watch(pulsePressureProvider);
+                    return RadioSetWidget(
+                      labels: const ["Day", "Week", "Month", "Year"],
+                      startIndex: viewModel.interval,
+                      onPressed: (int index) {
+                        viewModel.interval = index;
+                      },
+                      colorIndex: index,
+                    );
                   },
                 ),
               ),
               const SizedBox(height: 15.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: RadioSetWidget(
-                  labels: const ["Blood Pressure", "Pulse"],
-                  startIndex: viewModel.measure,
-                  onPressed: (int index) {
-                    viewModel.measure = index;
+                child: Consumer(
+                  builder: (BuildContext context,
+                      T Function<T>(ProviderBase<Object?, T>) watch,
+                      Widget? child) {
+                    int index = watch(pulsePressureProvider);
+                    return RadioSetWidget(
+                      labels: const ["Blood Pressure", "Pulse"],
+                      colorIndex: index,
+                      startIndex: viewModel.measure,
+                      onPressed: (int index) {
+                        viewModel.measure = index;
+                      },
+                    );
                   },
                 ),
               ),
@@ -87,6 +106,7 @@ class StatisticPage extends StatelessWidget {
                   return Expanded(
                     child: ChartWidget(
                       historyDates: vm.getChartData(),
+                      colorInd: vm.measure,
                     ),
                   );
                 },
