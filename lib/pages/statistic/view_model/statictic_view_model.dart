@@ -17,7 +17,23 @@ class HistoryData {
 
 class StatisticViewModel extends ChangeNotifier {
   final Reader reader;
+
   List<Measurement> _measurements = [];
+
+  int _interval = 0;
+  int get interval => _interval;
+  set interval(int value) {
+    _interval = value;
+    notifyListeners();
+  }
+
+  int _measure = 0;
+  int get measure => _measure;
+  set measure(int value) {
+    _measure = value;
+    notifyListeners();
+  }
+
 
   StatisticViewModel(this.reader) {
     init();
@@ -25,6 +41,18 @@ class StatisticViewModel extends ChangeNotifier {
 
   void init() {
     _measurements = reader(viewModelProvider).allMeasurements;
+  }
+
+  List<HistoryData> getChartData() {
+    if (measure == 1) {
+      if (interval == 0 ) {
+        return dayPulse;
+      }
+      if (interval == 1) {
+        return weekPulse;
+      }
+    }
+    return [];
   }
 
   List<HistoryData> get dayPulse {
@@ -87,6 +115,7 @@ class StatisticViewModel extends ChangeNotifier {
         amount += 1;
       }
     }
+    if (amount >)
     weekHistoryData.add(
       HistoryData(time: time, value: sum / amount),
     );
