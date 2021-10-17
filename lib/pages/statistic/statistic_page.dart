@@ -6,7 +6,7 @@ import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/src/provider.dart';
+
 
 class StatisticPage extends StatelessWidget {
   StatisticPage({Key? key}) : super(key: key);
