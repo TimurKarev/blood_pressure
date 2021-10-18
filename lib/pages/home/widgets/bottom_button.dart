@@ -4,14 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BottomButton extends StatelessWidget {
-  final IconData iconData;
+  final String imagePath;
   final String text;
   final ButtonButtonEnum button;
   final Function(ButtonButtonEnum) callbackFunction;
 
   const BottomButton({
     Key? key,
-    required this.iconData,
+    required this.imagePath,
     required this.text,
     required this.button,
     required this.callbackFunction,
@@ -25,10 +25,11 @@ class BottomButton extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(
-            iconData,
-            size: 40.0,
-            color: Styles.iconColor,
+          SizedBox(
+            child: Image.asset(
+              imagePath,
+              color: Styles.iconColor,
+            ),
           ),
           Text(
             text,
