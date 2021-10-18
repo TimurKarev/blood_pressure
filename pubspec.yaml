@@ -37,6 +37,11 @@ dependencies:
   flutter_riverpod: ^0.14.0+3
   flutter_svg: ^0.22.0
   intl: ^0.17.0
+  dart_date: ^1.1.0
+  charts_flutter:
+    git:
+      url: git://github.com/google/charts.git
+      path: charts_flutter
 
 dev_dependencies:
   flutter_test:

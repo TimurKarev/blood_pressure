@@ -16,23 +16,28 @@ class BottomInputWidget extends StatefulWidget {
 class _BottomInputWidgetState extends State<BottomInputWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("Status:", style: Styles.headerNormal),
-        const TopInputCard(),
-        const Text("Time:", style: Styles.headerNormal),
-        TimeWidget(),
-        const Text("How do you feel?:", style: Styles.headerNormal),
-        const FeelWidget(),
-        const Text(
-          "Have you taken any pills?:",
-          style: Styles.headerNormal,
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height - 190.0,
+        child: Column(
+          //mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Status:", style: Styles.headerNormal),
+            const TopInputCard(),
+            const Text("Time:", style: Styles.headerNormal),
+            TimeWidget(),
+            const Text("How do you feel?:", style: Styles.headerNormal),
+            const FeelWidget(),
+            const Text(
+              "Have you taken any pills?:",
+              style: Styles.headerNormal,
+            ),
+            const PillsWidget(),
+          ],
         ),
-        const PillsWidget(),
-      ],
+      ),
     );
   }
 }

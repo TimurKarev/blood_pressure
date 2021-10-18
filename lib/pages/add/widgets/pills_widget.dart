@@ -75,6 +75,7 @@ class _PillsWidgetState extends State<PillsWidget> {
         SizedBox(
           height: 40.0,
           child: CupertinoTextField(
+            scrollPadding: EdgeInsets.only(bottom: 300.0),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),

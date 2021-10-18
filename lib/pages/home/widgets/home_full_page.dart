@@ -4,6 +4,7 @@ import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:blood_pressure/pages/home/widgets/bottom_button.dart';
 import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/last_measure_card.dart';
+import 'package:blood_pressure/pages/statistic/statistic_page.dart';
 import 'package:blood_pressure/utils/diag_mapping.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:blood_pressure/styles.dart';
@@ -33,6 +34,13 @@ class HomeFullPage extends StatelessWidget {
             });
         break;
       case ButtonButtonEnum.statistic:
+        showGeneralDialog(
+            context: context,
+            pageBuilder: (BuildContext ctx, Animation animation,
+                Animation secondAnimation) {
+              return const StatisticPage();
+            });
+        break;
       case ButtonButtonEnum.settings:
     }
   }
@@ -131,7 +139,8 @@ class HomeFullPage extends StatelessWidget {
                             text: "Statistic",
                             iconData: CupertinoIcons.chart_bar_fill,
                             button: ButtonButtonEnum.statistic,
-                            callbackFunction: (_) {},
+                            callbackFunction: (ButtonButtonEnum btnPressed) =>
+                                buttonPressed(context, btnPressed),
                           ),
                           BottomButton(
                             text: "Add",
