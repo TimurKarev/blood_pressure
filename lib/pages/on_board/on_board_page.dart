@@ -1,6 +1,8 @@
+import 'package:blood_pressure/pages/home/widgets/home_full_page.dart';
 import 'package:blood_pressure/pages/on_board/widgets/on_board_template.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class OnBoardPage extends StatefulWidget {
   const OnBoardPage({Key? key}) : super(key: key);
@@ -40,6 +42,9 @@ class _OnBoardPageState extends State<OnBoardPage> {
     TextWidget(header: _headers[3], text: _text[3]),
   ];
 
+  final Curve curve = Curves.easeInOut;
+  final Duration duration = const Duration(milliseconds: 400);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -52,21 +57,40 @@ class _OnBoardPageState extends State<OnBoardPage> {
               OnBoardTemplate(
                 imagePath: _imagePath[0],
                 textOrButton: _widgets[0],
+                buttonText: "Next",
+                onPressed: () {
+                  controller.nextPage(duration: duration, curve: curve);
+                },
               ),
               OnBoardTemplate(
                 imagePath: _imagePath[1],
                 textOrButton: _widgets[1],
+                buttonText: "Next",
+                onPressed: () {
+                  controller.nextPage(duration: duration, curve: curve);
+                },
               ),
               OnBoardTemplate(
                 imagePath: _imagePath[2],
                 textOrButton: _widgets[2],
+                buttonText: "Next",
                 isTappable: true,
+                onPressed: () {
+                  controller.nextPage(duration: duration, curve: curve);
+                },
               ),
               OnBoardTemplate(
-                imagePath: _imagePath[3],
-                textOrButton: _widgets[3],
-                isNextButton: false,
-              ),
+                  imagePath: _imagePath[3],
+                  textOrButton: _widgets[3],
+                  buttonText: "Continue",
+                  onPressed: () {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                //TODO: Fix landing logic HomeFullPage - is not the best solution
+                                const HomeFullPage()),
+                        (Route<dynamic> route) => false);
+                  }),
             ],
           ),
         ],
