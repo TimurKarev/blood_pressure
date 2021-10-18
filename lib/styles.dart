@@ -74,6 +74,14 @@ abstract class Styles {
     color: CupertinoColors.inactiveGray,
   );
 
+  static const TextStyle legalText = TextStyle(
+    fontSize: 16,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.normal,
+    color: CupertinoColors.black,
+  );
+
+
   static const Color primaryColor = CupertinoColors.white;
 
   static const Color backgroundColor = CupertinoColors.systemGrey6;
