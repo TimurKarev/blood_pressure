@@ -65,6 +65,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
               OnBoardTemplate(
                 imagePath: _imagePath[3],
                 textOrButton: _widgets[3],
+                isNextButton: false,
               ),
             ],
           ),
