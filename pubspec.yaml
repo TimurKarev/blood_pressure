@@ -77,6 +77,10 @@ flutter:
     - assets/png/good_color.png
     - assets/png/good_grey.png
     - assets/png/emblem.png
+    - assets/png/feel_bad.png
+    - assets/png/feel_normal.png
+    - assets/png/feel_good.png
+
 
     - assets/png/on_board/on_board_1.png
     - assets/png/on_board/on_board_2.png
