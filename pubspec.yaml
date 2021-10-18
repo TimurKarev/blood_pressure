@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^0.22.0
   intl: ^0.17.0
   dart_date: ^1.1.0
+  url_launcher: ^6.0.12
   charts_flutter:
     git:
       url: git://github.com/google/charts.git

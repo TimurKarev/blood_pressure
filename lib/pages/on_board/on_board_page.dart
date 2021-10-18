@@ -83,6 +83,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
                   imagePath: _imagePath[3],
                   textOrButton: _widgets[3],
                   buttonText: "Continue",
+                  legalWidget: true,
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(

@@ -1,4 +1,4 @@
-import 'package:blood_pressure/pages/home/widgets/home_full_page.dart';
+import 'package:blood_pressure/pages/on_board/widgets/legal_widget.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,7 @@ class OnBoardTemplate extends StatelessWidget {
   final bool isTappable;
   final Function() onPressed;
   final String buttonText;
+  final bool legalWidget;
 
   const OnBoardTemplate({
     Key? key,
@@ -17,6 +18,7 @@ class OnBoardTemplate extends StatelessWidget {
     this.isTappable = false,
     required this.onPressed,
     required this.buttonText,
+    this.legalWidget = false,
   }) : super(key: key);
 
   @override
@@ -66,7 +68,7 @@ class OnBoardTemplate extends StatelessWidget {
             ),
             Flexible(
               flex: 1,
-              child: Container(),
+              child: legalWidget ? const LegalWidget() : Container(),
             ),
           ],
         ),
