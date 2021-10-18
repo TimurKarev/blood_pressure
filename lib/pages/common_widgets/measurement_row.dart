@@ -143,22 +143,22 @@ class MeasurementRow extends StatelessWidget {
     switch (feel) {
       case "Normal":
         retWidget = Image.asset(
-          "assets/png/normal_grey.png",
-          color: getColorFromDiag(feel),
+          "assets/png/feel_normal.png",
+          color: Styles.badgeNormalColor,
           fit: BoxFit.fill,
         );
         break;
       case "Bad":
         retWidget = Image.asset(
-          "assets/png/bad_grey.png",
-          color: getColorFromDiag(feel),
+          "assets/png/feel_bad.png",
+          color: Styles.badgeBadColor,
           fit: BoxFit.fill,
         );
         break;
       case "Good":
         retWidget = Image.asset(
-          "assets/png/good_grey.png",
-          color: getColorFromDiag(feel),
+          "assets/png/feel_good.png",
+          color: Styles.badgeGoodColor,
           fit: BoxFit.fill,
         );
         break;
