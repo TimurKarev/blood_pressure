@@ -7,14 +7,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardPage extends StatefulWidget {
-  const OnBoardPage({Key? key}) : super(key: key);
-
+  OnBoardPage({Key? key}) : super(key: key);
+  final PageController controller = PageController(initialPage: 0);
   @override
   _OnBoardPageState createState() => _OnBoardPageState();
 }
 
 class _OnBoardPageState extends State<OnBoardPage> {
-  final PageController controller = PageController(initialPage: 0);
+
 
   static const List<String> _imagePath = [
     "assets/png/on_board/on_board_1.png",
@@ -46,9 +46,12 @@ class _OnBoardPageState extends State<OnBoardPage> {
 
   final Curve curve = Curves.easeInOut;
   final Duration duration = const Duration(milliseconds: 400);
+  double _currentPage = 0;
+
 
   @override
   Widget build(BuildContext context) {
+    final controller = widget.controller;
     return CupertinoPageScaffold(
       child: Stack(
         children: [
@@ -57,6 +60,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
             controller: controller,
             onPageChanged: (_) {
               setState(() {
+                _currentPage = controller.page ?? 0;
               });
             } ,
             children: [
@@ -124,7 +128,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
                     padding: const EdgeInsets.all(12.0),
                     child: DotsIndicator(
                       dotsCount: 4,
-                      position: controller.page!,
+                      position: _currentPage,
                       decorator: const DotsDecorator(
                         color: Styles.buttonDisableColor, // Inactive color
                         activeColor: Styles.buttonColor,
