@@ -7,14 +7,16 @@ class OnBoardTemplate extends StatelessWidget {
   final String imagePath;
   final Widget textOrButton;
   final bool isTappable;
-  final bool isNextButton;
+  final Function() onPressed;
+  final String buttonText;
 
   const OnBoardTemplate({
     Key? key,
     required this.imagePath,
     required this.textOrButton,
     this.isTappable = false,
-    this.isNextButton = true,
+    required this.onPressed,
+    required this.buttonText,
   }) : super(key: key);
 
   @override
@@ -54,19 +56,11 @@ class OnBoardTemplate extends StatelessWidget {
                 color: Styles.buttonColor,
                 disabledColor: Styles.buttonDisableColor,
                 child: Text(
-                  isNextButton ? "Next" : "Continue",
+                  buttonText,
                   style: Styles.base,
                 ),
                 onPressed: () {
-                  if (isNextButton) {
-                  } else {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                //TODO: Fix landing logic HomeFullPage - is not the best solution
-                                const HomeFullPage()),
-                        (Route<dynamic> route) => false);
-                  }
+                  onPressed();
                 },
               ),
             ),
