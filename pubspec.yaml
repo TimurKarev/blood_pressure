@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.17.0
   dart_date: ^1.1.0
   url_launcher: ^6.0.12
+  rating_dialog: ^2.0.1
   charts_flutter:
     git:
       url: git://github.com/google/charts.git
@@ -85,6 +86,7 @@ flutter:
     - assets/png/feel_normal.png
     - assets/png/feel_good.png
 
+    - assets/png/blood_pressure_dialog_icon.png
 
     - assets/png/on_board/on_board_1.png
     - assets/png/on_board/on_board_2.png

@@ -2,6 +2,7 @@ import 'package:blood_pressure/pages/on_board/widgets/legal_widget.dart';
 import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 
 class OnBoardTemplate extends StatelessWidget {
   final String imagePath;
@@ -43,7 +44,8 @@ class OnBoardTemplate extends StatelessWidget {
               child: GestureDetector(
                 child: Center(child: textOrButton),
                 onTap: () {
-                  _openDialog(context);
+                  //_openDialog(context);
+                  _showRatingAppDialog(context);
                 },
               ),
             ),
@@ -102,5 +104,36 @@ class OnBoardTemplate extends StatelessWidget {
                 )
               ],
             ));
+  }
+
+  void _showRatingAppDialog(context) {
+    final _ratingDialog = RatingDialog(
+      ratingColor: Colors.amber,
+      title: 'Rate the app',
+      message: 'Tap a star to rate. Tou can also leave a'
+          ' comment',
+      image: Image.asset(
+        "assets/png/blood_pressure_dialog_icon.png",
+        height: 100,
+      ),
+      submitButton: 'Submit',
+      onCancelled: () => print('cancelled'),
+      onSubmitted: (response) {
+        print('rating: ${response.rating}, '
+            'comment: ${response.comment}');
+
+        if (response.rating < 3.0) {
+          print('response.rating: ${response.rating}');
+        } else {
+          Container();
+        }
+      },
+    );
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => _ratingDialog,
+    );
   }
 }
