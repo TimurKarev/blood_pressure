@@ -78,35 +78,7 @@ class OnBoardTemplate extends StatelessWidget {
     );
   }
 
-  void _openDialog(ctx) {
-    showCupertinoDialog(
-        context: ctx,
-        builder: (_) => CupertinoAlertDialog(
-              title: Text("This is the title"),
-              content: Text("This is the content"),
-              actions: [
-                // Close the dialog
-                // You can use the CupertinoDialogAction widget instead
-                CupertinoButton(
-                    child: Text('Cancel'),
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    }),
-                CupertinoButton(
-                  child: Text('I agree'),
-                  onPressed: () {
-                    // Do something
-                    print('I agreed');
-
-                    // Then close the dialog
-                    Navigator.of(ctx).pop();
-                  },
-                )
-              ],
-            ));
-  }
-
-  void _showRatingAppDialog(context) {
+ void _showRatingAppDialog(context) {
     final _ratingDialog = RatingDialog(
       ratingColor: Colors.amber,
       title: 'Rate the app',

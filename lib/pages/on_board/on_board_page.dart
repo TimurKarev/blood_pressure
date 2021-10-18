@@ -1,6 +1,6 @@
 import 'package:blood_pressure/pages/home/widgets/home_full_page.dart';
 import 'package:blood_pressure/pages/on_board/widgets/on_board_template.dart';
-import 'package:blood_pressure/styles.dart';
+import 'package:blood_pressure/pages/on_board/widgets/onboard_text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,10 +36,10 @@ class _OnBoardPageState extends State<OnBoardPage> {
   ];
 
   static final List<Widget> _widgets = [
-    TextWidget(header: _headers[0], text: _text[0]),
-    TextWidget(header: _headers[1], text: _text[1]),
-    TextWidget(header: _headers[2], text: _text[2]),
-    TextWidget(header: _headers[3], text: _text[3]),
+    OnBoardTextWidget(header: _headers[0], text: _text[0]),
+    OnBoardTextWidget(header: _headers[1], text: _text[1]),
+    OnBoardTextWidget(header: _headers[2], text: _text[2]),
+    OnBoardTextWidget(header: _headers[3], text: _text[3]),
   ];
 
   final Curve curve = Curves.easeInOut;
@@ -97,31 +97,5 @@ class _OnBoardPageState extends State<OnBoardPage> {
         ],
       ),
     );
-  }
-}
-
-class TextWidget extends StatelessWidget {
-  final String header;
-  final String text;
-
-  const TextWidget({
-    Key? key,
-    required this.header,
-    required this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      Center(child: Text(header, style: Styles.headerNormal)),
-      const SizedBox(height: 20.0),
-      Center(
-          child: Text(
-        text,
-        style: Styles.base,
-        textAlign: TextAlign.center,
-        //overflow: TextOverflow.ellipsis,
-      )),
-    ]);
   }
 }
