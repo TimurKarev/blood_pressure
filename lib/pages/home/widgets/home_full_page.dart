@@ -137,21 +137,21 @@ class HomeFullPage extends StatelessWidget {
                           //TODO: Change Icons on Buttons
                           BottomButton(
                             text: "Statistic",
-                            iconData: CupertinoIcons.chart_bar_fill,
+                            imagePath: "assets/png/statistic.png",
                             button: ButtonButtonEnum.statistic,
                             callbackFunction: (ButtonButtonEnum btnPressed) =>
                                 buttonPressed(context, btnPressed),
                           ),
                           BottomButton(
                             text: "Add",
-                            iconData: CupertinoIcons.add,
+                            imagePath: "assets/png/add.png",
                             button: ButtonButtonEnum.add,
                             callbackFunction: (ButtonButtonEnum btnPressed) =>
                                 buttonPressed(context, btnPressed),
                           ),
                           BottomButton(
                             text: "Settings",
-                            iconData: CupertinoIcons.settings,
+                            imagePath: "assets/png/settings.png",
                             callbackFunction: (_) {},
                             button: ButtonButtonEnum.settings,
                           ),
