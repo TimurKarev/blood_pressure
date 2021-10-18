@@ -1,6 +1,8 @@
 import 'package:blood_pressure/pages/home/widgets/home_full_page.dart';
 import 'package:blood_pressure/pages/on_board/widgets/on_board_template.dart';
 import 'package:blood_pressure/pages/on_board/widgets/onboard_text_widget.dart';
+import 'package:blood_pressure/styles.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +55,10 @@ class _OnBoardPageState extends State<OnBoardPage> {
           PageView(
             scrollDirection: Axis.horizontal,
             controller: controller,
+            onPageChanged: (_) {
+              setState(() {
+              });
+            } ,
             children: [
               OnBoardTemplate(
                 imagePath: _imagePath[0],
@@ -80,18 +86,61 @@ class _OnBoardPageState extends State<OnBoardPage> {
                 },
               ),
               OnBoardTemplate(
-                  imagePath: _imagePath[3],
-                  textOrButton: _widgets[3],
-                  buttonText: "Continue",
-                  legalWidget: true,
-                  onPressed: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                //TODO: Fix landing logic HomeFullPage - is not the best solution
-                                const HomeFullPage()),
-                        (Route<dynamic> route) => false);
-                  }),
+                imagePath: _imagePath[3],
+                textOrButton: _widgets[3],
+                buttonText: "Continue",
+                legalWidget: true,
+                onPressed: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              //TODO: Fix landing logic HomeFullPage - is not the best solution
+                              const HomeFullPage()),
+                      (Route<dynamic> route) => false);
+                },
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Flexible(
+                flex: 1,
+                child: Container(),
+              ),
+              Flexible(
+                flex: 3,
+                child: Container(),
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(),
+              ),
+              Flexible(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: DotsIndicator(
+                      dotsCount: 4,
+                      position: controller.page!,
+                      decorator: const DotsDecorator(
+                        color: Styles.buttonDisableColor, // Inactive color
+                        activeColor: Styles.buttonColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(),
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(),
+              ),
             ],
           ),
         ],
