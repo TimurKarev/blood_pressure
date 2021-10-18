@@ -19,7 +19,7 @@ class HomePageLanding extends ConsumerWidget {
     final widgetSate = watch(homePageLandingProvider);
     switch (widgetSate) {
       case HomePageLandingState.notEmpty:
-        return const HomeFullPage();
+        return const OnBoardPage(); //HomeFullPage();
       case HomePageLandingState.empty:
         //return const EmptyHomeScreen();
         return const OnBoardPage();
