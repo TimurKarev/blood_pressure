@@ -111,6 +111,7 @@ class AddPageViewModel extends ChangeNotifier {
       secondPartEdit = true;
       dateTime = DateTime.now();
 
+      //TODO: Make global function
       if (sys! < 90) {
         bageText = "Low blood pressure";
       } else if (sys! >= 90 && sys! < 120) {

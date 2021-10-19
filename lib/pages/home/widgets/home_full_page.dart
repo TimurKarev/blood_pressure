@@ -4,6 +4,7 @@ import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:blood_pressure/pages/home/widgets/bottom_button.dart';
 import 'package:blood_pressure/pages/home/widgets/history_widget.dart';
 import 'package:blood_pressure/pages/home/widgets/last_measure_card.dart';
+import 'package:blood_pressure/pages/settings/settings_page.dart';
 import 'package:blood_pressure/pages/statistic/statistic_page.dart';
 import 'package:blood_pressure/utils/diag_mapping.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,7 +26,6 @@ class HomeFullPage extends StatelessWidget {
   void buttonPressed(BuildContext context, ButtonButtonEnum button) {
     switch (button) {
       case ButtonButtonEnum.add:
-        //context.read(viewModelProvider).addMeasurement(Measurement.random());
         showGeneralDialog(
             context: context,
             pageBuilder: (BuildContext ctx, Animation animation,
@@ -42,6 +42,13 @@ class HomeFullPage extends StatelessWidget {
             });
         break;
       case ButtonButtonEnum.settings:
+        showGeneralDialog(
+            context: context,
+            pageBuilder: (BuildContext ctx, Animation animation,
+                Animation secondAnimation) {
+              return const SettingsPage();
+            });
+        break;
     }
   }
 
@@ -152,7 +159,8 @@ class HomeFullPage extends StatelessWidget {
                           BottomButton(
                             text: "Settings",
                             imagePath: "assets/png/settings.png",
-                            callbackFunction: (_) {},
+                            callbackFunction: (ButtonButtonEnum btnPressed) =>
+                                buttonPressed(context, btnPressed),
                             button: ButtonButtonEnum.settings,
                           ),
                         ],
