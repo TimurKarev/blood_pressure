@@ -4,14 +4,11 @@ import 'package:blood_pressure/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
       child: ClipPath(
@@ -59,15 +56,24 @@ class SettingsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    SettingsButtonWidget(text: "Terms of Use"),
-                    SizedBox(
+                    SettingsButtonWidget(
+                      text: "Terms of Use",
+                      onTap: () {},
+                    ),
+                    const SizedBox(
                       height: 10.0,
                     ),
-                    SettingsButtonWidget(text: "Privacy Policy"),
-                    SizedBox(
+                    SettingsButtonWidget(
+                      text: "Privacy Policy",
+                      onTap: () {},
+                    ),
+                    const SizedBox(
                       height: 10.0,
                     ),
-                    SettingsButtonWidget(text: "Support"),
+                    SettingsButtonWidget(
+                      text: "Support",
+                      onTap: () {},
+                    ),
                   ],
                 ),
               ),
