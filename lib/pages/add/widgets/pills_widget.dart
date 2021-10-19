@@ -16,6 +16,14 @@ class _PillsWidgetState extends State<PillsWidget> {
   List<bool> _statusList = [false, false];
   bool _textFieldEnable = false;
   final _controller = TextEditingController(text: "");
+  final _focusNode = FocusScopeNode();
+
+  // @override
+  // @mustCallSuper
+  // void initState() {
+  //   _focusNode.canRequestFocus = false;
+  //   super.initState();
+  // }
 
   void onTap(int index) {
     setState(() {
@@ -23,9 +31,12 @@ class _PillsWidgetState extends State<PillsWidget> {
       _statusList[index] = true;
       if (index == 0) {
         _textFieldEnable = false;
-          _controller.text = '';
+        _controller.text = '';
+        //_focusNode.canRequestFocus = false;
       } else {
-          _textFieldEnable = true;
+        _textFieldEnable = true;
+        _focusNode.canRequestFocus = true;
+        _focusNode.requestFocus();
       }
     });
   }
@@ -75,13 +86,14 @@ class _PillsWidgetState extends State<PillsWidget> {
         SizedBox(
           height: 40.0,
           child: CupertinoTextField(
-            scrollPadding: EdgeInsets.only(bottom: 300.0),
+            scrollPadding: const EdgeInsets.only(bottom: 300.0),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
             enabled: _textFieldEnable,
             placeholder: "Name of Pills",
             style: Styles.textInputText,
+            focusNode: _focusNode,
             cursorColor: CupertinoColors.black,
             controller: _controller,
             onChanged: (_) {

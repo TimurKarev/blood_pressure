@@ -34,7 +34,7 @@ class _BottomInputWidgetState extends State<BottomInputWidget> {
               "Have you taken any pills?:",
               style: Styles.headerNormal,
             ),
-            const PillsWidget(),
+            PillsWidget(),
           ],
         ),
       ),
