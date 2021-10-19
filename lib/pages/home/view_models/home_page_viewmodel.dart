@@ -2,6 +2,8 @@ import 'package:blood_pressure/model/measurement.dart';
 import 'package:blood_pressure/repository/measurement_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 enum HomePageLandingState {
   loading,
@@ -15,13 +17,16 @@ final viewModelProvider =
 
 class HomePageViewModel extends ChangeNotifier {
   final MeasurementRepository repository;
+  int appStartCounter = 0;
 
   HomePageLandingState isEmptyState = HomePageLandingState.loading;
+
   List<Measurement> historyMeasurements = [];
   Measurement? lastMeasurement;
   List<Measurement> allMeasurements = [];
 
   HomePageViewModel(this.repository) {
+    _checkForOnBoard();
     update();
   }
 
@@ -46,5 +51,12 @@ class HomePageViewModel extends ChangeNotifier {
     int result = await repository.addMeasurement(measurement);
     await update();
     return result;
+  }
+
+  Future<void> _checkForOnBoard() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    appStartCounter = (prefs.getInt('appStartCounter') ?? 0);
+    print(appStartCounter);
+    await prefs.setInt('appStartCounter', appStartCounter + 1);
   }
 }

@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.0.12
   rating_dialog: ^2.0.1
   dots_indicator: ^2.0.0
+  shared_preferences: ^2.0.8
   charts_flutter:
     git:
       url: git://github.com/google/charts.git

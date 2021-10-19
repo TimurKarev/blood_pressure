@@ -9,7 +9,7 @@ class InputField extends StatelessWidget {
 
   final double borderRadius;
 
-  //final bool actionDone;
+  final bool actionDone;
   final TextEditingController controller;
   final FocusNode? focusNode;
   final Function() valueChanged;
@@ -24,40 +24,33 @@ class InputField extends StatelessWidget {
     //required this.update,
     required this.valueChanged,
     this.borderRadius = 7.0,
-    //   this.actionDone = false,
+    this.actionDone = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Focus(
-      onFocusChange: (bool focus) {
-        if (!focus) {
-          //valueChanged();
-        }
-      },
-      child: SizedBox(
-        width: width,
-        height: 40.0,
-        child: CupertinoTextField(
-          keyboardType: TextInputType.number,
-          padding: const EdgeInsets.fromLTRB(5.0, 1.0, 1.0, 1.0),
-          decoration: BoxDecoration(
-            border: Border.all(),
-            borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-          ),
-          controller: controller,
-          placeholder: placeholder,
-          maxLength: maxLength,
-          maxLines: 1,
-          minLines: 1,
-          style: Styles.textInputText,
-          cursorColor: Styles.cursorColor,
-          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          //onChanged: (_) => update,
-          //onEditingComplete: valueChanged,
-          onChanged: (_) => valueChanged(),
-          textInputAction: TextInputAction.done,
+    return SizedBox(
+      width: width,
+      height: 40.0,
+      child: CupertinoTextField(
+        keyboardType: TextInputType.number,
+        padding: const EdgeInsets.fromLTRB(5.0, 1.0, 1.0, 1.0),
+        decoration: BoxDecoration(
+          border: Border.all(),
+          borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
         ),
+        controller: controller,
+        placeholder: placeholder,
+        maxLength: maxLength,
+        maxLines: 1,
+        minLines: 1,
+        style: Styles.textInputText,
+        cursorColor: Styles.cursorColor,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        //onChanged: (_) => update,
+        //onEditingComplete: valueChanged,
+        onChanged: (_) => valueChanged(),
+        textInputAction: actionDone? TextInputAction.done : TextInputAction.next,
       ),
     );
   }

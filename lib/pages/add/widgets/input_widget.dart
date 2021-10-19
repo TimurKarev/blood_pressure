@@ -7,19 +7,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TopInputWidget extends StatelessWidget {
 
-  final sysController = TextEditingController();
-  final diaController = TextEditingController();
-  final pulseController = TextEditingController();
 
-  TopInputWidget({
-    Key? key,
-  }) : super(key: key);
+  final _sysController = TextEditingController();
+  final _diaController = TextEditingController();
+  final _pulseController = TextEditingController();
+  final _sysFocus = FocusScopeNode();
+  final _diaFocus = FocusScopeNode();
+  final _pulseFocus = FocusScopeNode();
+
+  TopInputWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read(addPageViewModelProvider);
     return Column(
-      //crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Flexible(
@@ -44,13 +45,15 @@ class TopInputWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InputField(
-                      controller: sysController,
+                      controller: _sysController,
                       width: 70.0,
                       placeholder: '120',
                       maxLength: 3,
+                      focusNode: _sysFocus,
                       valueChanged: () {
-                        final int? sys = _getValue(sysController);
+                        final int? sys = _getValue(_sysController);
                         viewModel.sys = sys;
+                        _checkForUnFocus(context);
                       },
                     ),
                     const Text(
@@ -60,10 +63,12 @@ class TopInputWidget extends StatelessWidget {
                     InputField(
                       width: 70.0,
                       placeholder: '80',
-                      controller: diaController,
+                      controller: _diaController,
+                      focusNode: _diaFocus,
                       valueChanged: () {
-                        final int? dia = _getValue(diaController);
+                        final int? dia = _getValue(_diaController);
                         viewModel.dia = dia;
+                        _checkForUnFocus(context);
                       },
                     ),
                   ],
@@ -93,10 +98,13 @@ class TopInputWidget extends StatelessWidget {
                 child: InputField(
                   //width: 70.0,
                   placeholder: '60',
-                  controller: pulseController,
+                  controller: _pulseController,
+                  focusNode: _pulseFocus,
+                  actionDone: true,
                   valueChanged: () {
-                    final int? pulse = _getValue(pulseController);
+                    final int? pulse = _getValue(_pulseController);
                     viewModel.pulse = pulse;
+                    _checkForUnFocus(context);
                   },
                 ),
               ),
@@ -117,5 +125,13 @@ class TopInputWidget extends StatelessWidget {
       ctrl.text = "";
     }
     return null;
+  }
+
+  void _checkForUnFocus(context) {
+    if (_sysController.text.length >= 3 &&
+        _diaController.text.length >= 2 &&
+        _pulseController.text.length >= 2) {
+      FocusScope.of(context).requestFocus(FocusNode());
+    }
   }
 }

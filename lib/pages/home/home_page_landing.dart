@@ -19,10 +19,15 @@ class HomePageLanding extends ConsumerWidget {
     final widgetSate = watch(homePageLandingProvider);
     switch (widgetSate) {
       case HomePageLandingState.notEmpty:
-        return OnBoardPage(); //HomeFullPage();
+        if (context.read(viewModelProvider).appStartCounter == 0) {
+          return OnBoardPage();
+        }
+        return const HomeFullPage(); //HomeFullPage();
       case HomePageLandingState.empty:
-        //return const EmptyHomeScreen();
-        return OnBoardPage();
+        if (context.read(viewModelProvider).appStartCounter == 0) {
+          return OnBoardPage();
+        }
+        return const EmptyHomeScreen();
       case HomePageLandingState.loading:
         return Container(
           color: CupertinoColors.white,
