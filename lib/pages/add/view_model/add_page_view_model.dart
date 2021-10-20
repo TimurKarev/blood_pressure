@@ -1,3 +1,4 @@
+import 'package:blood_pressure/domain/diagnosis.dart';
 import 'package:blood_pressure/model/measurement.dart';
 import 'package:blood_pressure/pages/home/view_models/home_page_viewmodel.dart';
 import 'package:flutter/foundation.dart';
@@ -111,21 +112,7 @@ class AddPageViewModel extends ChangeNotifier {
       secondPartEdit = true;
       dateTime = DateTime.now();
 
-      //TODO: Make global function
-      if (sys! < 90) {
-        bageText = "Low blood pressure";
-      } else if (sys! >= 90 && sys! < 120) {
-        bageText = "Normal";
-      } else if (sys! >= 120 && sys! < 140) {
-        bageText = "Prehypertension";
-      } else if (sys! >= 140 && sys! < 170) {
-        bageText = "Hypertension Stage 1";
-      } else if (sys! >= 170 && sys! < 220) {
-        bageText = "Нypertension Stage 2";
-      } else if (sys! >= 220) {
-        bageText = "Seek Emergency Care";
-      }
-
+    bageText = getDiagnosis(_sys ?? 0, _dia ?? 0, _pulse ?? 0);
       notifyListeners();
     } else {
       enableButton = false;
