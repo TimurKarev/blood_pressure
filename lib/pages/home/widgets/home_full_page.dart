@@ -77,7 +77,7 @@ class HomeFullPage extends StatelessWidget {
                 child: Container(),
               ),
               Flexible(
-                flex: 1,
+                flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
@@ -90,7 +90,7 @@ class HomeFullPage extends StatelessWidget {
                 ),
               ),
               const Flexible(
-                flex: 7,
+                flex: 6,
                 fit: FlexFit.tight,
                 child: SizedBox(
                   width: double.infinity,
