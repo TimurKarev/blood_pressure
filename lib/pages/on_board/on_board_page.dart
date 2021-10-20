@@ -117,7 +117,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
                 child: Container(),
               ),
               Flexible(
-                flex: 1,
+                flex: 2,
                 child: Container(),
               ),
               Flexible(

@@ -40,7 +40,7 @@ class OnBoardTemplate extends StatelessWidget {
               child: Image.asset(imagePath),
             ),
             Flexible(
-              flex: 1,
+              flex: 2,
               child: GestureDetector(
                 child: Center(child: textOrButton),
                 onTap: () {
